@@ -23,7 +23,7 @@ public class MailBoxController {
         return modelAndView;
     }
     @PostMapping("/update")
-    public String update(@ModelAttribute MailBox mailBox){
+    public String update(@ModelAttribute("mailbox") MailBox mailBox){
         iMailBoxService.update(mailBox);
         System.out.println(mailBox.getSpamsFilter());
         System.out.println(mailBox.getPageSize());
