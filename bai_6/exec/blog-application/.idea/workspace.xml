@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ac6eb530-a665-4c07-9417-8cd31133a3d8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../bai_5/product-management-application/src/main/resources/hibernate.conf.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_5/product-management/src/main/java/com/example/productmanagement/configuration/AppConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_5/product-management/src/main/java/com/example/productmanagement/configuration/AppInit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_5/product-management/src/main/java/com/example/productmanagement/controller/ProductController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_5/product-management/src/main/java/com/example/productmanagement/model/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_5/product-management/src/main/java/com/example/productmanagement/repository/IProductRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_5/product-management/src/main/java/com/example/productmanagement/repository/ProductRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_5/product-management/src/main/java/com/example/productmanagement/service/IProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_5/product-management/src/main/java/com/example/productmanagement/service/ProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_5/product-management/src/main/resources/hibernate.conf.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_5/product-management/src/main/webapp/WEB-INF/views/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_5/product-management/src/main/webapp/WEB-INF/views/detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_5/product-management/src/main/webapp/WEB-INF/views/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_5/product-management/src/main/webapp/WEB-INF/views/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_5/product-management/src/main/webapp/WEB-INF/views/list-product-by-name.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_5/product-management/src/main/webapp/WEB-INF/views/remove.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_5/product-management/src/main/webapp/WEB-INF/views/update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../prac/customer_management_application/src/main/java/com/example/customer_management_application/configuration/AppConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../prac/customer_management_application/src/main/java/com/example/customer_management_application/configuration/AppInit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../prac/customer_management_application/src/main/java/com/example/customer_management_application/controller/CustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../prac/customer_management_application/src/main/java/com/example/customer_management_application/model/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../prac/customer_management_application/src/main/java/com/example/customer_management_application/repository/CustomerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../prac/customer_management_application/src/main/java/com/example/customer_management_application/repository/ICustomerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../prac/customer_management_application/src/main/java/com/example/customer_management_application/repository/IGenerateRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../prac/customer_management_application/src/main/java/com/example/customer_management_application/service/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../prac/customer_management_application/src/main/java/com/example/customer_management_application/service/ICustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../prac/customer_management_application/src/main/java/com/example/customer_management_application/service/IGenerateService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../prac/customer_management_application/src/main/webapp/WEB-INF/views/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../prac/customer_management_application/src/main/webapp/WEB-INF/views/delete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../prac/customer_management_application/src/main/webapp/WEB-INF/views/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../prac/customer_management_application/src/main/webapp/WEB-INF/views/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../prac/customer_management_application/src/main/webapp/WEB-INF/views/update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../prac/customer_management_application/src/main/webapp/WEB-INF/views/view.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2ZynYhYXwiTjJtZseB54lrZzvSJ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "android.gradle.sync.needed": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/C0823G1_Nguyen_Dinh_Thai_Bao_Module1/module_4/bai_6/exec/blog-application",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
+      <setting name="path" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ac6eb530-a665-4c07-9417-8cd31133a3d8" name="Changes" comment="" />
+      <created>1703403239037</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1703403239037</updated>
+      <workItem from="1703403240053" duration="21000" />
+      <workItem from="1703403279196" duration="711000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
