@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>ListCustomer</title>
+</head>
+<body>
+<h3>Blog List</h3>
+<p>
+    <a th:href="@{/}">
+        Back list Categorys
+    </a>
+</p>
+<p>
+    <a th:href="@{/category/create}">
+        Add new Category
+    </a>
+</p>
+
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+</div>
+
+<table id="customers">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ctgr,c : ${categorys}">
+        <td th:text="${c.count}"></td>
+        <td><a th:href="@{/category/view-category/{id}(id=${ctgr.getId()})}" th:text="${ctgr.getName()}"></a></td>
+        <td><a th:href="@{/category/edit/{id}(id=${ctgr.getId()})}">
+            <button value="Edit">Edit</button>
+        </a></td>
+        <td>
+            <a type="button" th:attr="onclick=|onDeleteHandler('${ctgr.id}','${ctgr.name}')|" class="btn btn-danger"
+               data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Delete
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--            <div class="modal-header">-->
+            <!--                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+            <!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+            <!--            </div>-->
+            <form action="/category/remove" method="post">
+                <div class="modal-body">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="idDelete" id="idDelete">
+                    Do you want to delete blog with title <span id="nameDelete"></span>?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function onDeleteHandler(id, name) {
+        document.getElementById("idDelete").value = id;
+        document.getElementById("nameDelete").innerHTML = name;
+    }
+</script>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

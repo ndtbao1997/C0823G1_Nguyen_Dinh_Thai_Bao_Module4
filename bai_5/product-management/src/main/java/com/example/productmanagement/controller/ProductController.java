@@ -70,10 +70,10 @@ public class ProductController {
     }
     @GetMapping("/find-by-name")
     public String findByName(@RequestParam("name1") String name,Model model){
+        model.addAttribute("success","Không có sản phẩm nào trùng tên cả!");
         List<Product> products = iProductService.findByName(name);
         if (products.isEmpty()){
             model.addAttribute("products",iProductService.findAll());
-            model.addAttribute("success","Không có sản phẩm nào trùng tên cả!");
             return "/index";
         } else {
             model.addAttribute("products",products);

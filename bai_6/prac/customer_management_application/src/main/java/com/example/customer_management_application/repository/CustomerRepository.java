@@ -18,6 +18,7 @@ public class CustomerRepository implements ICustomerRepository {
     @Override
     public List<Customer> findAll() {
         TypedQuery<Customer> query = entityManager.createQuery("select c from Customer c", Customer.class);
+        System.out.println(entityManager);
         return query.getResultList();
     }
 
