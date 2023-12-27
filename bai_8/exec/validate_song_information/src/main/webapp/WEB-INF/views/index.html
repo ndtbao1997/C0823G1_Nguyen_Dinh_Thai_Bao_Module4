@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>List Songs</title>
+</head>
+<body>
+<h3>Songs</h3>
+<p>
+    <a th:href="@{/create}">
+        Thêm mới bài hát
+    </a>
+</p>
+
+<div class="notify">
+    <div th:if="${message}">
+        <span th:text="${message}"></span>
+    </div>
+</div>
+
+<table id = "customers">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Tên bài hát</th>
+        <th>Nghệ sĩ thể hiện</th>
+        <th>Thể loại bài hát</th>
+        <th>Sửa</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="s,sStatus : ${songs}">
+        <td th:text="${sStatus.count}"></td>
+        <td th:text="${s.nameSong}"></td>
+        <td th:text="${s.artistsExpress}"></td>
+        <td th:text="${s.kindOfMusic}"></td>
+        <td><a th:href="@{/update/{id}(id=${s.getId()})}">Sửa</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
