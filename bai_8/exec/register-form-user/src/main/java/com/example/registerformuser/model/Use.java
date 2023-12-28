@@ -1,5 +1,7 @@
 package com.example.registerformuser.model;
 
+import com.example.registerformuser.annotation.EmailAnnotation;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -26,6 +28,7 @@ public class Use {
 
     @NotBlank(message = "Email không được để trống")
     @Email(message = "Email không hợp lệ!")
+    @EmailAnnotation
     private String email;
 
     public Use() {

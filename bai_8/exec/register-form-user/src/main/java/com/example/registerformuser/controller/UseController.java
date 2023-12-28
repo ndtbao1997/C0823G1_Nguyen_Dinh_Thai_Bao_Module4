@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import javax.jws.soap.SOAPBinding;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("")
@@ -26,8 +28,8 @@ public class UseController {
     }
 
     @PostMapping("/register")
-    public ModelAndView createUse(@Validated @ModelAttribute("use") Use use, BindingResult bindingResult) {
-        if (bindingResult.hasFieldErrors()) {
+    public ModelAndView createUse(@Valid @ModelAttribute("use") Use use, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return new ModelAndView("form");
         } else {
             iUseService.save(use);

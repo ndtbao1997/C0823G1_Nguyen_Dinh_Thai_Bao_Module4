@@ -28,8 +28,8 @@
         </div>
         <div>
             <label for="category">Category:</label>
-            <select th:field="*{category}" id="category">
-                <option th:each="c : ${categorys}" th:value="${c.id}" th:text="${c.name}"></option>
+            <select th:field="*{category.id}" id="category">
+                <option th:each="c : ${categorys}" th:value="${c.id}" th:text="${c.name}" ></option>
             </select>
         </div>
         <input type="submit" value="Update"/>
