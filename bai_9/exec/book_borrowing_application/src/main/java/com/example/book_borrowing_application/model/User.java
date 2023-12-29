@@ -7,7 +7,6 @@ import lombok.Getter;
 
 import java.util.List;
 
-@Getter
 @Entity
 @Table(name = "user")
 public class User {
@@ -46,5 +45,21 @@ public class User {
 
     public void setBookDetailsList(List<BookDetails> bookDetailsList) {
         this.bookDetailsList = bookDetailsList;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getNameUser() {
+        return nameUser;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public List<BookDetails> getBookDetailsList() {
+        return bookDetailsList;
     }
 }

@@ -5,7 +5,7 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-@Getter
+
 public class BookDetailsDto {
     private Integer id;
     private LocalDateTime dateTime;
@@ -44,4 +44,23 @@ public class BookDetailsDto {
         this.userName = userName;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public String getRandomCode() {
+        return randomCode;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
 }

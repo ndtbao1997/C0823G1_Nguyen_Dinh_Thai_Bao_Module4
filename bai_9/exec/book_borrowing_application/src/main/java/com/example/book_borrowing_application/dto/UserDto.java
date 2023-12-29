@@ -5,7 +5,6 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 
-@Getter
 public class UserDto {
     @PositiveOrZero
     private Integer id;
@@ -37,5 +36,17 @@ public class UserDto {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getNameUser() {
+        return nameUser;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 }
