@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 public class Logger {
    private static int count =0;
 
-    @After("execution(* com.example.book_borrowing_application.controller.BookController.*(..))")
+    @After("execution(public * com.example.book_borrowing_application.controller.*.*(..))")
     public void countVisit(JoinPoint joinPoint){
-      Object[] objects= joinPoint.getArgs();
-      String s = (String) objects[0];
-        count++;
-       System.out.println("----------------------------------------------------------------------");
-        System.out.println(count);
+//      Object[] objects= joinPoint.getArgs();
+//      String s = (String) objects[0];
+      count++;
+      System.out.println("----------------------------------------------------------------------");
+      System.out.println("Số lần ghé thăm thư viện là :" + count);
     }
 }

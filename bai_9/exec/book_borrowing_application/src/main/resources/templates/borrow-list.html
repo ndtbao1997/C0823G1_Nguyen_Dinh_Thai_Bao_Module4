@@ -4,9 +4,9 @@
     <title>Book management</title>
 </head>
 <body>
-<h3>Danh sách truyện</h3>
-<a class="btn btn-primary" th:href="@{/book-detail}">
-    Danh sách mượn sách
+<h3>Danh sách mượn truyện</h3>
+<a class="btn btn-primary" th:href="@{/}">
+    Quay lại trang chủ
 </a>
 
 <div class="notify">
@@ -19,26 +19,23 @@
     <thead>
     <tr>
         <th>STT</th>
+        <th>Thời gian mượn</th>
         <th>Tên sách</th>
-        <th>Số lượng còn lại</th>
-        <th>Mượn</th>
+        <th>Tên khách hàng</th>
+        <th>Trả</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="book,b : ${books}">
+    <tr th:each="br,b : ${listBorrow}">
         <td th:text="${b.count}"></td>
-        <td th:text="${book.getBookName()}"></td>
-        <td th:text="${book.getQuantity()}"></td>
-        <td th:if="${book.getQuantity() != 0}">
-            <a type="button" th:attr="onclick=|onDeleteHandler('${book.id}','${book.bookName}')|" class="btn btn-primary"
+        <td th:text="${df.format(br.getDateTime())}"></td>
+        <td th:text="${br.getBookName()}"></td>
+        <td th:text="${br.getNameUser()}"></td>
+        <td>
+            <a type="button" th:attr="onclick=|onDeleteHandler('${br.getId}','${br.getBookName}')|" class="btn btn-danger"
                data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Mượn
+                Trả
             </a>
-        </td>
-        <td th:if="${book.getQuantity() == 0}">
-            <button class="btn btn-danger">
-                Đã hết
-            </button>
         </td>
     </tr>
     </tbody>
@@ -52,15 +49,18 @@
             <!--                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
             <!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
             <!--            </div>-->
-            <form action="/borrow" method="get">
+            <form action="/book-detail/pay" method="get">
                 <div class="modal-body">
-                    <input type="hidden" name="action" value="borrow">
-                    <input type="hidden" name="idBorrow" id="idBorrow">
-                    Bạn muốn cho mượn cuốn sách <span id="nameBorrow"></span>?
+                    <input type="hidden" name="action" value="pay">
+                    <input type="hidden" name="idPay" id="idPay">
+                    Bạn muốn cho trả cuốn sách <span id="namePay"></span>?
+                    <label for="randomCode">
+                        Nhập mã trả sách:
+                    </label><input type="text" id="randomCode" name="randomCode">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="submit" class="btn btn-primary">Cho mượn</button>
+                    <button type="submit" class="btn btn-primary">Trả</button>
                 </div>
             </form>
         </div>
@@ -68,8 +68,8 @@
 </div>
 <script>
     function onDeleteHandler(id, name) {
-        document.getElementById("idBorrow").value = id;
-        document.getElementById("nameBorrow").innerHTML = name;
+        document.getElementById("idPay").value = id;
+        document.getElementById("namePay").innerHTML = name;
     }
 </script>
 <footer th:replace="/layout :: footer"></footer>

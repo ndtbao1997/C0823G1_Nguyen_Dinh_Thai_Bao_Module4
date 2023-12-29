@@ -14,6 +14,9 @@ public class BookDetails {
     private Integer id;
     private LocalDateTime dateTime;
 
+    @Getter
+    private String randomCode;
+
     @ManyToOne
     @JoinColumn(name = "book_id",referencedColumnName = "id")
     private Book book;
@@ -22,9 +25,10 @@ public class BookDetails {
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
 
-    public BookDetails(Integer id, LocalDateTime dateTime, Book book, User user) {
+    public BookDetails(Integer id, LocalDateTime dateTime, String randomCode, Book book, User user) {
         this.id = id;
         this.dateTime = dateTime;
+        this.randomCode = randomCode;
         this.book = book;
         this.user = user;
     }
@@ -46,5 +50,9 @@ public class BookDetails {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setRandomCode(String randomCode) {
+        this.randomCode = randomCode;
     }
 }

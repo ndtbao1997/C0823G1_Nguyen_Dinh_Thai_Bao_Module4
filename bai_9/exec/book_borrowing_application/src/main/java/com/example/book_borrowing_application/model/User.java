@@ -1,9 +1,13 @@
 package com.example.book_borrowing_application.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import lombok.Getter;
 
 import java.util.List;
 
+@Getter
 @Entity
 @Table(name = "user")
 public class User {
@@ -11,8 +15,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String phoneNumber;
     private String nameUser;
+
+    private String phoneNumber;
 
     @OneToMany(mappedBy = "user")
     private List<BookDetails> bookDetailsList;
@@ -27,32 +32,16 @@ public class User {
     public User() {
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getNameUser() {
-        return nameUser;
-    }
-
     public void setNameUser(String nameUser) {
         this.nameUser = nameUser;
-    }
-
-    public List<BookDetails> getBookDetailsList() {
-        return bookDetailsList;
     }
 
     public void setBookDetailsList(List<BookDetails> bookDetailsList) {
