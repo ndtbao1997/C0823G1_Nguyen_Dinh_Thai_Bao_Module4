@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6640befa-8461-4aed-bd36-272983882c29" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../register-form-user/src/main/java/com/example/registerformuser/annotation/EmailAnnotation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../register-form-user/src/main/java/com/example/registerformuser/annotation/EmailAnnotationValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../register-form-user/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../bai_7/exec/blog-appilication/src/main/webapp/WEB-INF/views/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../bai_7/exec/blog-appilication/src/main/webapp/WEB-INF/views/update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../register-form-user/src/main/java/com/example/registerformuser/configuration/AppConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../register-form-user/src/main/java/com/example/registerformuser/configuration/AppConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../register-form-user/src/main/java/com/example/registerformuser/controller/UseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../register-form-user/src/main/java/com/example/registerformuser/controller/UseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../register-form-user/src/main/java/com/example/registerformuser/model/Use.java" beforeDir="false" afterPath="$PROJECT_DIR$/../register-form-user/src/main/java/com/example/registerformuser/model/Use.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../register-form-user/src/main/java/com/example/registerformuser/repository/IUseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../register-form-user/src/main/java/com/example/registerformuser/repository/IUseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../register-form-user/src/main/java/com/example/registerformuser/service/IUseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../register-form-user/src/main/java/com/example/registerformuser/service/IUseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../register-form-user/src/main/java/com/example/registerformuser/service/UseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../register-form-user/src/main/java/com/example/registerformuser/service/UseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d463c2bf-48e3-491f-8620-454ec0ace529.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d463c2bf-48e3-491f-8620-454ec0ace529.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../prac/customize-phone-validate/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../prac/customize-phone-validate/.idea/gradle.xml" afterDir="false" />
-    </list>
+    <list default="true" id="6640befa-8461-4aed-bd36-272983882c29" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,7 +61,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/C0823G1_Nguyen_Dinh_Thai_Bao_Module1/module_4/bai_7/exec/blog-appilication",
+    "last_opened_file_path": "D:/C0823G1_Nguyen_Dinh_Thai_Bao_Module1/module_4/bai_9/prac/customer_management",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -193,6 +180,7 @@
       <updated>1703646107265</updated>
       <workItem from="1703646108378" duration="9531000" />
       <workItem from="1703729889956" duration="1087000" />
+      <workItem from="1703735310047" duration="835000" />
     </task>
     <servers />
   </component>
