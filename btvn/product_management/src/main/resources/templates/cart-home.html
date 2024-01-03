@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>Danh sách sản phẩm</title>
+</head>
+<body>
+<h3>Danh sách sản phẩm</h3>
+<span>
+    <a class="btn btn-primary" th:href="@{/book-detail}">
+    Danh sách danh mục
+    </a>
+</span>
+<span>
+    <a class="btn btn-primary" th:href="@{/book-detail}">
+    Thêm mới sản phẩm
+    </a>
+</span>
+<span>
+    <a class="btn btn-danger" th:href="@{/book-detail}">
+    Giỏ hàng
+    </a>
+</span>
+
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+</div>
+
+<table id="customers" th:object="${cart}">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Tên sản phẩm</th>
+        <th>Giá</th>
+        <th>Hình ảnh</th>
+        <th>Số lượng</th>
+        <th>Xóa</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product,p: ${cart.products}">
+        <td th:text="${p.count}"></td>
+        <td th:text="${product.getKey().getName()}"></td>
+        <td th:text="${product.getKey().getPrice()}"></td>
+        <td>
+            <img th:src="@{${product.getKey().getImage()}}" style="width: 100px;height: 100px" alt="">
+        </td>
+        <td>
+            <a class="btn fw-bold" th:href="@{/shopping-cart/product/{id}(id=${product.key.id},action='remove')}">-</a>
+            <input class="col-3" th:id="${product.key.id}" th:attr="onchange=|onAmountChange('${product.key.id}')|" type="number" th:value="${product.getValue()}">
+            <a class="btn fw-bold" th:href="@{/shopping-cart/product/{id}(id=${product.key.id},action='add')}">+</a>
+        </td>
+        <td>
+            <button class="btn btn-primary">
+                Xóa
+            </button>
+        </td>
+    </tr>
+    <tr>
+        <th colspan="6">Tổng tiền: <span th:text="${cart.countTotalPayment()}"></span></th>
+    </tr>
+    </tbody>
+</table>
+<br>
+
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            &lt;!&ndash;            <div class="modal-header">&ndash;&gt;-->
+<!--            &lt;!&ndash;                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>&ndash;&gt;-->
+<!--            &lt;!&ndash;                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--            <form action="/borrow" method="get">-->
+<!--                <div class="modal-body">-->
+<!--                    <input type="hidden" name="action" value="borrow">-->
+<!--                    <input type="hidden" name="idBorrow" id="idBorrow">-->
+<!--                    Bạn muốn cho mượn cuốn sách <span id="nameBorrow"></span>?-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>-->
+<!--                    <button type="submit" class="btn btn-primary">Cho mượn</button>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<script>
+    function onDeleteHandler(id, name) {
+        document.getElementById("idBorrow").value = id;
+        document.getElementById("nameBorrow").innerHTML = name;
+    }
+    function onAmountChange(id) {
+        let amount = document.getElementById(id).value;
+        location.href = "/shopping-cart/product/" + id + "?amount=" + amount;
+    }
+</script>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

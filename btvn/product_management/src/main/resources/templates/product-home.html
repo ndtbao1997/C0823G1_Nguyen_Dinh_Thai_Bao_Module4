@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>Danh sách sản phẩm</title>
+</head>
+<body>
+<h3>Danh sách sản phẩm</h3>
+<span>
+    <a class="btn btn-primary" th:href="@{/book-detail}">
+    Danh sách danh mục
+    </a>
+</span>
+<span>
+    <a class="btn btn-primary" th:href="@{/book-detail}">
+    Thêm mới sản phẩm
+    </a>
+</span>
+<span>
+    <a class="btn btn-danger" th:href="@{/cart}">
+    Giỏ hàng
+    </a>
+</span>
+
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+</div>
+
+<table id="customers">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Tên sản phẩm</th>
+        <th>Giá</th>
+        <th>Số lượng còn lại</th>
+        <th>Hình ảnh</th>
+        <th>Loại sản phẩm</th>
+        <th>Sửa</th>
+        <th>Xóa</th>
+        <th>Thêm giỏ hàng</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product,p : ${products}">
+        <td th:text="${p.count + products.number*4}"></td>
+        <td th:text="${product.getName()}"></td>
+        <td th:text="${product.getPrice()}"></td>
+        <td th:text="${product.getQuantity()}"></td>
+        <td>
+            <img th:src="@{${product.getImage()}}" style="width: 100px;height: 100px" alt="">
+        </td>
+        <td th:text="${product.getCategoryName()}"></td>
+        <td>
+            <button class="btn btn-primary">
+                Sửa
+            </button>
+        </td>
+        <td>
+            <button class="btn btn-primary">
+                Xóa
+            </button>
+        </td>
+        <td th:if="${!cart.checkProductInCart(product.getId())}">
+            <a type="button"  th:href="@{/add/{id}(id=${product.id}, page=${products.number})}"
+               class="btn btn-danger">
+                Thêm
+            </a>
+        </td>
+        <td th:if="${cart.checkItemInCart(product.getId())}">
+            <button class="btn btn-light">
+                Đã thêm
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<span th:each="pageNumber : ${#numbers.sequence(1, products.totalPages)}">
+    <span th:if="${products.number == pageNumber -1}">
+        <a class="btn btn-primary" th:href="@{'/'(page=${pageNumber - 1})}" th:text="${pageNumber}"></a>
+    </span>
+    <span th:if="${products.number != pageNumber -1}">
+        <a class="btn btn-light" th:href="@{'/'(page=${pageNumber - 1})}" th:text="${pageNumber}"></a>
+    </span>
+</span>
+
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            &lt;!&ndash;            <div class="modal-header">&ndash;&gt;-->
+<!--            &lt;!&ndash;                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>&ndash;&gt;-->
+<!--            &lt;!&ndash;                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--            <form action="/borrow" method="get">-->
+<!--                <div class="modal-body">-->
+<!--                    <input type="hidden" name="action" value="borrow">-->
+<!--                    <input type="hidden" name="idBorrow" id="idBorrow">-->
+<!--                    Bạn muốn cho mượn cuốn sách <span id="nameBorrow"></span>?-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>-->
+<!--                    <button type="submit" class="btn btn-primary">Cho mượn</button>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<script>
+    function onDeleteHandler(id, name) {
+        document.getElementById("idBorrow").value = id;
+        document.getElementById("nameBorrow").innerHTML = name;
+    }
+</script>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

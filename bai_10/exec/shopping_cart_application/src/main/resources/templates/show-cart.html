@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Giỏ hàng</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        h3{background-color: blue; color: white; padding: 10px 0 10px 20px;}
+        footer{margin: 10px 0;}
+
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 0;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        input[type=text],input[type=email]{
+            width: 100%;
+            padding: 12px 0;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 300px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        #form {
+            width: 500px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .notify span{font-size: 15px; color: blue;}
+    </style>
+</head>
+<body>
+<table id="customers" th:object="${cart}">
+    <thead>
+    <tr>
+        <th colspan="2" style="font-size: 2rem">Giỏ hàng</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product: ${cart.products}">
+        <td style="width: 35%"><img style="width: 100%" th:src="@{${product.getKey().getImage()}}" alt=""></td>
+        <td>
+            <table cellspacing="0" cellpadding="0">
+                <tr>
+                    <th colspan="2" th:text="${product.getKey().getName()}" style="background-color: white;font-size: 2rem; color: red"></th>
+                </tr>
+                <tr>
+                    <th style="background-color: white; color: black;font-size: 2em;">Mã sản phẩm:</th>
+                    <th style="background-color: white; color: green;font-size: 2em;" th:text="${product.getKey().getId()}"></th>
+                </tr>
+                <tr>
+                    <td style="background-color: white; color: black;font-size: 2em;">Đơn giá:</td>
+                    <th style="background-color: white; color: black;font-size: 2em;" th:text="${#numbers.formatDecimal(product.getKey().getPrice(), 0, 'COMMA', 0, 'POINT') + 'đ'}"></th>
+                </tr>
+                <tr>
+                    <td style="background-color: white; color: black;font-size: 2em;">Số lượng:</td>
+                    <th style="background-color: white; color: black;font-size: 2em;">
+                        <a th:href="@{/add1/__${product.getKey().id}__(action='1')}" style="text-decoration: none">
+                            <span th:if="${product.getValue() == 1}">
+                                <button class="btn btn-danger">1</button>
+                            </span>
+                            <span th:if="${product.getValue() != 1}">
+                                <button class="btn btn-primary">1</button>
+                            </span>
+                        </a>
+                        <a th:href="@{/add1/__${product.getKey().id}__(action='2')}" style="text-decoration: none">
+                            <span th:if="${product.getValue() == 2}">
+                                <button class="btn btn-danger">2</button>
+                            </span>
+                            <span th:if="${product.getValue() != 2}">
+                                <button class="btn btn-primary">2</button>
+                            </span>
+                        </a>
+                        <a th:href="@{/add1/__${product.getKey().id}__(action='3')}" style="text-decoration: none">
+                            <span th:if="${product.getValue() == 3}">
+                                <button class="btn btn-danger">3</button>
+                            </span>
+                            <span  th:if="${product.getValue() != 3}">
+                                <button class="btn btn-primary">3</button>
+                            </span>
+                        </a>
+                    </th>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        </td>
+        <td style="font-size: 2rem">Tổng cộng : <span th:text="${#numbers.formatDecimal(cart.countTotalPayment(), 0, 'COMMA', 0, 'POINT') + 'đ'}" style="color:red"></span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<script>
+    function onDeleteHandler(id, name) {
+        document.getElementById("idPay").value = id;
+        document.getElementById("namePay").innerHTML = name;
+    }
+</script>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
