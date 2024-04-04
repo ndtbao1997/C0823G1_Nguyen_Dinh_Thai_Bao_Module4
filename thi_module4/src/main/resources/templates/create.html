@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>CreateCustomer</title>
+</head>
+<body>
+<h3></h3>
+<p>
+    <a th:href="@{/}">
+        Quay lại
+    </a>
+</p>
+<div id="form">
+    <form
+          method="POST">
+        <input type="hidden"/>
+        <div>
+            <label for="name">0000</label>
+            <input type="text" id="name"/>
+        </div>
+        <div>
+            <label for="number">000</label>
+            <input type="number" id="number"/>
+        </div>
+        <input type="submit" value="Thêm mới"/>
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

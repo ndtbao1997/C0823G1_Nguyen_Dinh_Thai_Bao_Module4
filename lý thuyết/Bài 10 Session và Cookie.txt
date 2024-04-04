@@ -1,0 +1,43 @@
+Bài 10: Session và Cookie
+
+* @CookieValueAnnotation
+• Annotation@CookieValue sử dụng để truy cập dữ liệu được đặt trong bất kỳ http cookie nào.
+• Annotation @CookieValue có thể được sử dụng trong tham số phương thức của controller.
+• Annotation@CookieValue sẽ tự động liên kết giá trị cookie với tham số phươngthức
+
+* Annotation @CookieValue – Cú pháp
+Cú pháp:
+(@CookieValue(“cookieName”) DataType paramName)
+Trong đó:
+• cookieName là tên của cookie
+• DataType là kiểu dữ liệucủa tham số
+• paramName là tên của tham số
+
+* Thiết lập http cookie trong Spring MVC
+• Phươngthức addCookie() củalớp HttpServletResponse sử dụng để thiết lập một cookie trong một ứng dụng dựa trên SpringMVC.
+
+* Thiết lậpthời gian còn hiệu lực
+• Phương thức setMaxAge xác định thời gian Cookie còn hiệu lực.
+• Ví dụ sau sẽ thiết lập một Cookie trong 24 giờ:
+cookie.setMaxAge(60*60*24);
+
+* Xoá Cookie
+• Xóa cookie theo 3 bước như sau:
+• Đọc một cookie đang tồn tại và lưu trong đối tượng Cookie.
+• Thiết lập tuổi của cookie về 0 sử dụng phương thức setMaxAge().
+• Thêm cookie trở lại bên trong trường Response header.
+
+* Sessionlàgì
+• Session được gọi là một phiên làm việc giữa client và server.
+• Một session bắt đầu khi client thực hiện request đầu tiên đến server và kết thúc khi client dừng làm việc với server.
+• Thông thường chúng ta sử dụng Session để lưu thông tin đăng nhập, giỏ hàng hoặc những dữ liệu mang tính chất tạm thời và mỗi client sẽ có dữ liệu khác nhau.
+• Session tồn tại khi các yêu cầu sau đây còn thoả mãn:
+• User không đóng browser
+• User không log-out khỏi website
+• Nếu user không tương tác gì với Website thì sau một khoảng thời gian thường 30phút (do admin ấn định bên server), session sẽ bị đóng.
+
+* Các cơ chế quản lý session
+• Phương pháp 1: Inject trong HttpSession nơi được yêu cầu.
+• Phương pháp 2: Sử dụng như một tham số
+• Phương pháp 3: Tạo một bean và giới hạn cho session làm việc.
+• Phương pháp 4: Sử dụng annotation @SessionAttributes.

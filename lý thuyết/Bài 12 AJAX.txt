@@ -1,0 +1,60 @@
+Bài 12: AJAX
+
+* Ajax là gì
+• AJAX – Asynchronous JavaScript and XML, là một nhóm các công nghệ phát triển web được sử dụng để tạo các ứng dụng web giàu tính tương tác, nhanh hơn và mượt mà hơn với sự giúp đỡ của XML, HTML, CSS và JavaScript.
+• AJAX cho phép các trang web được cập nhật một cách không đồng bộ bằng cách trao đổi các lượng dữ liệu nhỏ với Server mà
+không cần phải tải lại.
+• Với AJAX, người dùng có thể tiếp tục sử dụng ứng dụng trong khi các chương trình trên Client tạo Request để lấy thông tin từ Server.
+
+* Một số ví dụ sử dụngAjax
+• Google Map
+• Google Suggest
+• Gmail
+
+* Các thành phần cơ bản trong Ajax
+• HTML & CSS trong việc hiển thị thông tin
+• JavaScript
+• Document Object Model (DOM)
+• Tương tác với thông tin được hiển thị thông qua JavaScript
+• Đối tượng XMLHttpRequest
+• Trao đổi dữ liệu một cách không đồng bộ với máy chủ.
+• XML hoặc JSON
+• Định dạng cho dữ liệu truyền
+
+* Nhược điểmAjax
+• Các trang web được tạo động không được ghi vào bộ lưu lịch sử lướt web của trình duyệt, do đó nút "back” của trình duyệt sẽ mất tác dụng.
+• Việc cập nhật các trang web động cũng gây khó khăn cho người dùng trong việc bookmark một trạng thái nào đó của ứng dụng.
+• Bất kỳ người dùng nào có trình duyệt không hỗ trợ Ajax hay JavaScript, hoặc đơn giản là đã bị vô hiệu hóa JavaScript, sẽ đương nhiên không thể sử dụng Ajax.
+• Tấn công của các đoạn mã độc mà những nhà phát triển web có thể không kiểm thử hết được
+
+* Ưu điểm Ajax
+• Một ứng dụng web có thể chỉ yêu cầu cho các nội dung cần thiết phải cập nhật, do đó giảm lượng lớn băng thông và thời gian nạp trang.
+• Việc dùng các yêu cầu không đồng bộ (asynchronous request) cho phép giao diện người dùng hiển thị trên trình duyệt giúp người dùng trải nghiệm sự tương tác cao, với nhiều phần riêng lẻ.
+• Việc sử dụng Ajax có thể làm giảm các kết nối đến server, do script và các style sheet chỉ phải yêu cầu một lần.
+
+* Kiểu dữ liệu được trả về từ server
+• Với kỹ thuật ajax client chỉ quan tâm đến loại dữ liệu trả về từ server mà không quan tâm đến server sẽ làm công việc gì.
+• Các loại dữ liệu được trả về từ server gồm
+• Văn bản hoặc HTML
+• Đối tượng JSON
+
+* JQuery là gì?
+JQuery là một thư viện JavaScript gọn nhẹ (lightweight), "viết ít hơn, làm nhiều hơn" (write less, do more). Mục đích của jQuery là giúp sử dụng JavaScript dễ dàng hơn trên trang web của bạn. JQuery thực hiện rất nhiều công việc phổ biến mà đòi hỏi phải viết nhiều dòng mã JavaScript, và đưa chúng vào các phương thức mà bạn có thể gọi chỉ với một dòng mã.
+JQuery cũng đơn giản hoá rất nhiều những thứ phức tạp của JavaScript, như gọi AJAX và thao tác DOM .
+
+Thư viện jQuery chứa các tính năng sau đây:
+
+Điều khiển HTML/DOM
+Điều khiển CSS
+Các phương thức sự kiện HTML
+Các hiệu ứng và hoạt hình (animation)
+AJAX
+Các tiện ích
+Note: Ngoài ra, jQuery có các plugin cho hầu hết bất kỳ công việc nào.
+
+* Cú pháp cơ bản
+$(selector).action()
+
+$ là ký hiệu để định nghĩa\truy cập jQuery
+(selector) để "truy vấn (hoặc tìm)" phần tử HTML
+action() là hành động được jQuery định nghĩa sẵn để thực hiện với các phần tử

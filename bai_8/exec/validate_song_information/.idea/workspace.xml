@@ -4,7 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6640befa-8461-4aed-bd36-272983882c29" name="Changes" comment="" />
+    <list default="true" id="6640befa-8461-4aed-bd36-272983882c29" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/exec/blog-appilication/src/main/java/com/example/blogappilication/controller/BlogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/exec/blog-appilication/src/main/webapp/WEB-INF/views/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/thuc_hanh_1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/thuc_hanh_2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/ajax/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/ajax/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/ajax/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/ajax/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/ajax/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/ajax/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/phones-management-ajax-web-service/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/phones-management-ajax-web-service/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/phones-management-ajax-web-service/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/phones-management-ajax-web-service/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/phones-management-ajax-web-service/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/phones-management-ajax-web-service/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/phones-management-ajax-web-service/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/phones-management-ajax-web-service/src/main/java/com/codegym/configuration/AppConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/phones-management-ajax-web-service/src/main/java/com/codegym/configuration/AppInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/phones-management-ajax-web-service/src/main/java/com/codegym/controller/SmartphoneController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/phones-management-ajax-web-service/src/main/java/com/codegym/model/Smartphone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/phones-management-ajax-web-service/src/main/java/com/codegym/repository/ISmartphoneRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/phones-management-ajax-web-service/src/main/java/com/codegym/service/ISmartphoneService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../bai_12/prac/wbds-2023-spring-webservice-ajax-develop/phones-management-ajax-web-service/src/main/java/com/codegym/service/impl/SmartphoneService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../bai_10/exec/shopping_cart_application/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../bai_10/exec/shopping_cart_application/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,7 +88,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/C0823G1_Nguyen_Dinh_Thai_Bao_Module1/module_4/bai_9/prac/customer_management",
+    "last_opened_file_path": "D:/C0823G1_Nguyen_Dinh_Thai_Bao_Module1/module_4/case1/C0823G1-Repo-BE/ticket_management",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -181,6 +208,8 @@
       <workItem from="1703646108378" duration="9531000" />
       <workItem from="1703729889956" duration="1087000" />
       <workItem from="1703735310047" duration="835000" />
+      <workItem from="1704463493193" duration="2184000" />
+      <workItem from="1704517731159" duration="675000" />
     </task>
     <servers />
   </component>

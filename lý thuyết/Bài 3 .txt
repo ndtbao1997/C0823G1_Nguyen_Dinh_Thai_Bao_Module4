@@ -1,0 +1,159 @@
+Bài 3: 
+
+* Views và View Resolvers trong Spring MVC
+• Có hai interface trong SpringMVC để phù hợp với cốt lõi hệ thống template của nó đó là:
+• org.springframework.web.servlet.View
+• org.springframework.web.servlet.ViewResolver
+• Các view mô hình các trang trong ứng dụng và cho phép sửa đổi và định nghĩa trước các hành vi thông qua việc định nghĩa chúng như các bean.
+• ViewResolvers là các đối tượng phụ trách thu thập các đối tượng View cho một hoạt động và khu vực cụ thể.
+
+* Views và View Resolvers trong Thymeleaf
+• Thymeleaf cung cấp các triển khai cho hai giao diện kể trên cụ thể là:
+• org.thymeleaf.spring5.view.ThymeleafView
+• org.thymeleaf.spring5.view.ThymeleafViewResolver
+• Hai lớp này chịu trách nhiệm xử lý các template Thymeleaf như là một kết quả thực thi của các controller.
+
+* Giới thiệu Thymeleaf
+• Thymeleaf là một bộ xử lý view được sử dụng cho các ứng dụng web và các ứng dụng độc lập.
+• Thymeleaf có thể xử lý HTML,XML,JavaScript,CSS và cả text và cả RAW.
+• Thymeleaf cung cấp một cách thức xây dựng template(mẫu) hiện đại và dễ bảo trì.
+• Thymeleaf được xây dựng phù hợp với các tiêu chuẩn của web, đặc biệt là HTML5.
+
+* th:text được sử dụng để hiểnthị text
+
+* Biểuthức
+• Biểu thức với biến: ${...}
+• Biểu thức với thuộc tính: *{...}
+• Biểu thức với Message: #{...}
+• Biểu thức với URL: @{...}
+• Biểu thức với phân đoạn: ~{...}
+
+* Các hằng giá trị
+• Hằng văn bản: ’CodeGym',’Việt Nam’,…
+• Hằng số: 0, 34, 3.0, 12.3,…
+• Hằng giá trị lô gic: true, false
+• Hằng null:null
+• Hằng token: one, sometext, main,…
+
+* Thao tác với chuỗi
+• Toán tử cộng chuỗi: +
+• Thay thế giá trị của biến: |The name is ${name}|
+
+* Toán tử toán học
+• Toán tử số học: +, -, *, /, %
+• Toán tử một ngôi (lấy số đối): - 
+
+* Toán tử logic
+• Toán tử nhị phân: and, or
+• Toán tử một ngôi: !, not
+
+* Toán tử sosánh
+• Các toán tử so sánh: >, <, >=, <=
+• Toán tử so sánh bằng: ==, !=
+
+* Toán tử điều kiện
+• Nếu-thì: (if) ? (then)
+• Nếu-thì-trái lại: (if) ? (then) : (else)
+• Giá trị mặc định: (value) ?: (defaultvalue)
+
+* Hiển thị giá trị của biến
+• Ví dụ:
+<p>Today is: <span th:text="${today}">13 february 2011</span>.</p>
+• Hoặc:
+<p>
+Today is: <span th:text="${#calendars.format(today,'dd MMMM yyyy')}">13 May 
+2011</span>
+</p>
+
+* Hiển thị giá trị của biến
+• Ví dụ:
+<p>Today is: <span th:text="${today}">13 february 2011</span>.</p>
+• Hoặc:
+<p>
+Today is: <span th:text="${#calendars.format(today,'dd MMMM yyyy')}">13 May 
+2011</span>
+</p>
+
+* Hiển thị fragment
+• Fragment là các đoạn mã riêng biệt, có thể được nhúng vào các vị trí khác nhau trong template
+• Có thể sử dụng th:insert hoặc th:replace để nhúng fragment
+• Ví dụ:
+<div th:insert="~{commons :: main}">...</div>
+• Hoặc sử dụng như một biến:
+<div th:with="frag=~{footer :: #main/text()}">
+<p th:insert="${frag}">
+</div>
+
+* Trạng thái của vòng lặp th:each
+• Vòng lặp th:each cung cấp các trạng thái sau:
+• index: chỉ số của lần lặp hiện tại, bắt đầu từ giá trị 0
+• count: chỉ số của lần lặp hiện tại, bắt đầu từ giá trị 1
+• size: tổng số các phần tử
+• current: phần tử của vòng lặp hiện tại
+• even hoặc odd: vòng lặp chẵn hay lẻ
+• first: vòng lặp đầu tiên
+• last: vòng lặp cuối cùng
+
+* Toán tử điều kiện
+• Ví dụ:
+<tr th:class="${row.even}? 'even' :'odd'">
+...
+</tr>
+
+* Câu lệnh điều kiện th:switch
+• Ví dụ:
+<div th:switch="${user.role}">
+<p th:case="'admin'">User is an administrator</p>
+<p th:case="#{roles.manager}">User is a manager</p>
+</div>
+• Hoặc với giá trị mặc định:
+<div th:switch="${user.role}">
+<p th:case="'admin'">User is an administrator</p>
+<p th:case="#{roles.manager}">User is a manager</p>
+<p th:case="*">User is some otherthing</p>
+</div>
+
+* Bean là một phần quan trọng ở trong Spring Boot. Dựa theo định nghĩa trong document của Spring Framework documentation: Trong Spring, các đối tượng tạo thành xương sống của ứng dụng và được quản lý bởi bộ chứa Spring IoC được gọi là các hạt. Bean là một đối tượng được khởi tạo, lắp ráp và quản lý bởi bộ chứa Spring IoC.
+
+* Bean trong Spring Framework:
+-Trong Spring Framework, bean là một đối tượng được quản lý bởi Spring IoC (Inversion of Control) container. Bean đại diện cho một thành phần của ứng dụng, như một service, một DAO (Data Access Object), hoặc một controller.
+Để khai báo một bean, bạn có thể sử dụng các annotation như @Component, @Service, @Repository hoặc @Controller, tùy thuộc vào loại bean bạn muốn tạo. 
+- Ví dụ:
+@Service
+public class MyService {
+    // Các thành phần và phương thức của service
+}
+
+* Trong Spring có bao nhiêu Bean Scope?
+- Singleton, Prototype, Request,Session, Global Session, Application, WebSocket
+
+* Trong Spring Framework, @Component là một annotation được sử dụng để đánh dấu một class là một thành phần của ứng dụng. Annotation này cho Spring biết rằng class đó cần được quản lý bởi Spring container và có thể được sử dụng trong việc dependency injection (DI) và các tính năng khác của Spring.
+
+* Spring IoC container sẽ quản lý vòng đời của các bean và giúp tiêm phụ thuộc (dependency injection) tự động giữa các bean.
+@Autowired trong Spring Framework:
+
+* Annotation @Autowired được sử dụng để tiêm phụ thuộc tự động cho các bean. Khi một bean cần phụ thuộc vào một bean khác, bạn có thể sử dụng @Autowired để Spring Framework tự động tìm và tiêm bean phù hợp vào thuộc tính hoặc phương thức setter của bean hiện tại.
+
+* Điểm khác nhau giữa th:insert và th:replace (và th:include)
+- th:insert: Thực hiện chèn fragment như 1 thẻ con của thẻ có thuộc tính th:insert
+- th:replace: Thực hiện chèn fragment thay vào vị trí của thẻ có thuộc tính th:replace
+- th:include: Tương tự như  th:insert nhưng thay vì chèn toàn bộ fragment, nó chỉ chèn vào nội dung bên trong của thẻ fragment (thuộc tính này không được khuyến khích sử dụng từ Thymleaf 3.0)
+
+* ModelAndView:
+- ModelAndView là một lớp được cung cấp sẵn trong Spring MVC.
+- Nó kết hợp thông tin về dữ liệu (Model) và tên của View để trả về.
+- Bạn có thể truyền dữ liệu bằng cách sử dụng phương thức addObject() hoặc addAttribute() của ModelAndView.
+- Bạn có thể đặt tên View bằng cách gọi phương thức setViewName().
+- Nó thường được sử dụng khi bạn muốn truyền cả dữ liệu Model và tên View cùng một lúc.
+
+* ModelMap:
+- ModelMap là một lớp cung cấp sẵn trong Spring MVC và thừa kế từ LinkedHashMap.
+- Nó cung cấp các phương thức để thêm và truy xuất dữ liệu Model.
+- Bạn có thể sử dụng phương thức addAttribute() để thêm dữ liệu vào ModelMap.
+- Khi trả về từ một phương thức Controller, Spring MVC sẽ tự động chuyển đổi ModelMap thành một đối tượng Model và truyền nó cho View để sử dụng.
+
+* Model:
+Model là một interface trong Spring MVC, được sử dụng để truyền dữ liệu từ Controller đến View. 
+Nó cung cấp một cách để lưu trữ và truyền dữ liệu trong quá trình xử lý request và response. 
+Model thường được truyền như một tham số vào phương thức xử lý request trong Controller. 
+Các đối tượng được lưu trữ trong Model có thể là các đối tượng Java thông thường hoặc các đối tượng dữ liệu (DTO - Data Transfer Object) được sử dụng để truyền dữ liệu giữa Controller và View.

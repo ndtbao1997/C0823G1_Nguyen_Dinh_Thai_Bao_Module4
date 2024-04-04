@@ -1,0 +1,75 @@
+Bài 4: Dataa Binding & Form
+
+* 1. Xử lý command object
+- Command Object là tên gọi cho đối tượng đứng sau mỗi form trong Spring MVC, các đối tượng này lưu giữ giá trị của các trường của một form, các thuộc tính của các đối tượng này được get và set bởi framework dựa theo các input của form.
+- Thymeleaf yêu cầu bạn xác định command object bằng cách sử dụng thuộc tính th:object trong thẻ <form>:
+
+<form action="#" th:action="@{/seedstartermng}" th:object="${seedStarter}" method="post">
+    ...
+</form>
+ 
+- Có một số ràng buộc sau đây:
++ Các giá trị cho thuộc tính th:object trong các thẻ form phải là biểu thức ($ {...}) chỉ định theo tên của model attribute, ${seedStarter} là hợp lệ, nhưng $ {seedStarter.data} sẽ không hợp lệ.
++ Thực tế là các form HTML không thể lồng nhau, do đó trong thẻ <form>, cũng không thể được đặt thêm th:object khác. 
+
+* Tạo form
+• Form là cơ chế để cho phép người dùng nhập dữ liệu
+• SpringMVC cung cấp các thẻ trong thư viện spring-form.tld để thao tác với form
+• Khai báo spring-form.tld:
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+• spring-form.tld cung cấp thẻ form và các thẻ thành phần khác để thao tác với form
+• spring-form.tld cung cấp các cơ chế để kiểm tra lỗi, tuỳ biến giao diện và triển khai quốc tế hoá (i18n)
+
+* Data Binding
+• DataBinding là cơ chế liên kết dữ liệu đầu vào (hoặc đầu ra) với các đối tượng model
+• DataBinding giúp cho việc tương tác với dữ liệu trở nên dễ dàng
+• Sử dụng DataBinding, các form đều được liên kết với một đối tượng biểu diễn dữ liệu ở phía sau
+• Khi tương tác với form, dữ liệu trên form sẽ được tự động chuyển đổi thành các thuộc tính của đối tượng liên kết với nó
+• Data Binding hỗ trợ chuyển đổi dữ liệu (data conversion) và validate dữ liệu
+• DataBinding trong Spring hoạt động dựa trên DataBinder
+
+* Thẻ form
+• Thẻ form được sử dụng để tạo một form
+• Ngoài các thuộc tính cơ bản của một thẻ form trong HTML, thẻ form còn có thêm thuộc tính quan trọng:
+• commandName hoặc modelAttribute: Tên của model được liên kết với form
+• Thuộc tính commandName và modelAttribute có tác dụng giống nhau(commandName là cách dùng cũ, modelAttribute là cách dùng mới)
+• Ví dụ:
+<form:form modelAttribute="user" action="/create-user" method="post">
+</form:form>
+
+* Các thẻ của spring-form.tld
+• spring-form.tld hỗ trợ các thẻ:button, checkbox, checkboxes,errors,
+form, hidden,input,label, option, options, password, radiobutton,
+radiobuttons, select,textarea
+• Một số thuộc tính quan trọng:
+• path: tên của thuộc tính được liên kết với trường hiện tại
+• items: danh sách các hạng mục của các trường như select, options,radiobuttons, checboxes
+
+* Annotation @ModelAttribute
+- Một trong những annotation quan trọng nhất trong Spring MVC.
+- Thông thường, controller có thể chuyển tập các model attribute tới cho front controller (và nhờ đó view có thể truy cập các model atrribute này) bằng cách sử dụng kiểu trả về ModelAndView, hoặc bằng cách thông qua tham số Model/ModelMap.
+- Annotation ModelAttribute là một cách bổ sung, nó giúp bind tham số hoặc kết quả trả về của một phương thức thành một model attribute dưới tên được chỉ định.
+• Sử dụng @ModelAttribute để truy cập đến thuộc tính của một model (hoặc khởi tạo model nếu chưa có)
+• Các thuộc tính của model được liên kết với các trường dữ liệu có cùng tên
+
+* ModelAttribute là một annotation trong framework Spring được sử dụng để đánh dấu một tham số trong một phương thức controller. Annotation này cho phép lấy dữ liệu từ request và gán vào thuộc tính của đối tượng được đánh dấu bằng @ModelAttribute.
+- Thông thường, @ModelAttribute được sử dụng trong các phương thức xử lý form submission hoặc khi cần truyền dữ liệu từ client lên server.
+- Cách sử dụng @ModelAttribute:
+- Đánh dấu một tham số trong phương thức controller bằng @ModelAttribute.
+Spring sẽ tự động tạo một đối tượng của kiểu được đánh dấu và gán dữ liệu từ request vào thuộc tính của đối tượng đó.
+Đối tượng được tạo và gán dữ liệu sẽ được truyền vào phương thức controller để xử lý.
+
+* Bind kết quả trả về của một method thành model attribute
+@ModelAttribute("customers")
+public Iterable<Customer> getAllCustomers() {
+    return customerService.findAll();
+}
+- Phương thức trên được gọi ngay trước mỗi khi handle method (những method có annotation @RequestMapping hoặc tương đương) được gọi, và nó bổ sung model attribute có tên "customers" vào model trả về của bất kỳ handle method nào. Có nghĩa là mọi view được handle method dẫn ra sau đó đều có thể sử dụng model attribute này.
+
+* Bind tham số của một method thành model attribute
+@PostMapping
+public String submitCustomer(@ModelAttribute("customer") Customer newCustomer) {
+    customerService.save(newCustomer);
+    return "customers/info";
+}
+- Tham số newCustomer ở trên, dĩ nhiên được tổng hợp lại từ request. Ở đây, nhờ có annotation ModelAttribute, đối tượng này cũng được bổ sung tự động vào model cho view "customers/info", dưới tên "customer".

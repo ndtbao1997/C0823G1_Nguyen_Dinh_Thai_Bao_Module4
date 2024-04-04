@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>Chuồng lợn</title>
+</head>
+<body>
+<h3>Chuồng lợn</h3>
+<p>
+    <a class="btn btn-primary">
+        00000
+    </a>
+</p>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+    Search By Title
+</button>
+<br>
+<div th:text="${messege}"></div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Input title:</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form th:action="@{/search}" method="get">
+                <div class="modal-body">
+                    <label for="search"></label><input type="text" id="search" name="search" style="width: 100%">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+</div>
+
+<table id="customers">
+    <thead>
+    <tr>
+        <th>00</th>
+        <th>00</th>
+        <th>00</th>
+        <th>00</th>
+        <th>00</th>
+        <th>00</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><a>
+            <button value="Edit">Sửa</button>
+        </a></td>
+        <td>
+            <a type="button" th:attr="onclick=|onDeleteHandler('00','00')|" class="btn btn-danger"
+               data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Xóa
+            </a>
+        </td>
+        <td><a><button>Chi tiết</button></a></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<!--<div>-->
+<!--    <a class="btn btn-primary" th:if="${blogs.hasPrevious()}"-->
+<!--       th:href="@{'/'(page=${blogs.number - 1})}">Previous</a>-->
+<!--    <span th:text="${blogs.number + 1}"></span> | <span th:text="${blogs.totalPages}"></span>-->
+<!--    <a class="btn btn-primary" th:if="${blogs.hasNext()}"-->
+<!--       th:href="@{'/'(page=${blogs.number + 1})}">Next</a>-->
+<!--</div>-->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--            <div class="modal-header">-->
+            <!--                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+            <!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+            <!--            </div>-->
+            <form action="/remove" method="post">
+                <div class="modal-body">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="idDelete" id="idDelete">
+                    Bạn có muốn xóa<span id="nameDelete"></span>?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Xóa</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function onDeleteHandler(id, name) {
+        document.getElementById("idDelete").value = id;
+        document.getElementById("nameDelete").innerHTML = name;
+    }
+</script>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

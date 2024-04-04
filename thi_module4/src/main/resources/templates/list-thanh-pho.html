@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>Chuồng lợn</title>
+</head>
+<body>
+<h3>Danh sách thành phố</h3>
+<p>
+    <a th:href="@{/create}" class="btn btn-primary">
+       Thêm mới thành phố
+    </a>
+</p>
+
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+</div>
+
+<table id="customers">
+    <thead>
+    <tr>
+        <th>Stt</th>
+        <th>Thành phố</th>
+        <th>Quốc gia</th>
+        <th>Chỉnh sửa</th>
+        <th>Xóa</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tp,t : ${listThanhPho}">
+        <td th:text="${t.count}"></td>
+        <td><a th:href="@{/view/{id}(id=${tp.getId()})}" th:text="${tp.getNameThanhPho()}"></a> </td>
+        <td th:text="${tp.getNameQuocGia()}"></td>
+        <td><a th:href="@{/edit/{id}(id=${tp.getId()})}">
+            <button value="Edit">Sửa</button>
+        </a></td>
+        <td>
+            <a type="button" th:attr="onclick=|onDeleteHandler('${tp.getId()}','${tp.getNameThanhPho()}')|" class="btn btn-danger"
+               data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Xóa
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<!--<div>-->
+<!--    <a class="btn btn-primary" th:if="${blogs.hasPrevious()}"-->
+<!--       th:href="@{'/'(page=${blogs.number - 1})}">Previous</a>-->
+<!--    <span th:text="${blogs.number + 1}"></span> | <span th:text="${blogs.totalPages}"></span>-->
+<!--    <a class="btn btn-primary" th:if="${blogs.hasNext()}"-->
+<!--       th:href="@{'/'(page=${blogs.number + 1})}">Next</a>-->
+<!--</div>-->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--            <div class="modal-header">-->
+            <!--                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+            <!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+            <!--            </div>-->
+            <form action="/remove" method="post">
+                <div class="modal-body">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="idDelete" id="idDelete">
+                    Bạn có chắc chắn muốn xóa thành phố <span id="nameDelete"></span>?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Xóa</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function onDeleteHandler(id, name) {
+        document.getElementById("idDelete").value = id;
+        document.getElementById("nameDelete").innerHTML = name;
+    }
+</script>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

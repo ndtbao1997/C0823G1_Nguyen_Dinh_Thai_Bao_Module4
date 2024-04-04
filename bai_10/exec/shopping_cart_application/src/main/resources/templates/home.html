@@ -64,7 +64,7 @@
                 <img th:src="@{${product.image}}" alt="ảnh wed" height="400" width="600">
             </a>
             <div class="desc" th:text="${product.getName()}" style="font-size: 1.2em;margin-bottom: -10px;font-weight: bold"></div>
-            <div class="desc" th:text="${#numbers.formatDecimal(product.getPrice(), 0, 'COMMA', 0, 'POINT') + 'đ'}" style="font-size: 1.4em;color: red;font-weight: bold"></div>
+            <div class="desc" th:text="" style="font-size: 1.4em;color: red;font-weight: bold"></div>
         </div>
     </div>
 </div>

@@ -1,0 +1,15 @@
+Bài 8:
+
+* Khái niệm Validation
+- Validation thực hiện đánh giá/xác minh tính hợp lệ của dữ liệu đầu vào.
+
+* Annotation @Valid sẽ đảm bảo validate toàn bộ đối tượng. Tuy nhiên, sẽ không phù hợp khi cần validate một phần của đối tượng.
+- Mặt khác, chúng ta có thể sử dụng @Validated  để validate nhóm, bao gồm cả validate từng phần ở trên.  Tuy nhiên, trong trường hợp này, các thực thể được validate phải biết quy tắc validate cho tất cả các nhóm hoặc trường hợp sử dụng mà nó được sử dụng. Ở đây chúng ta đang trộn lẫn các mối quan tâm, do đó, điều này có thể dẫn đến anti-pattern.
+
+* Tóm lại, đối với những thao tác validate cơ bản, chúng ta sẽ sử dụng annotation @Valid trong các lệnh gọi phương thức. Mặt khác, đối với thao tác validate theo nhóm, chúng ta sẽ cần sử dụng annotation @Validated của Spring. Các @Valid  annotation cũng cần thiết để validate các thuộc tính lồng bên trong (nested properties).
+
+* VALIDATION
+Kiểm soát tính hợp lệ dữ liệu đầu vào luân là vấn đề quan trọng hàng đầu của mỗi lập trình viên. Việc làm này cần được tiến hành ở cả 2 phía là client và server.
+Kiểm lỗi phía client để có các phản ứng nhanh cho người dùng, làm cho ứng dụng thân thiện hơn với người dùng.
+Kiểm lỗi phía server được thực hiện với những điều kiện không thể thực hiện được trên client. Kiểm lỗi phía server có tính bảo mật cao hơn nhưng thực hiện chậm gây phiền hà cho người dùng. Để khắc phục nhược điểm này người ta sử dụng kỹ thuật ajax để kết hợp kiểm lỗi phía server nhưng phản hồi ngay tức thì cho người dùng.
+Ngoài ra với các ứng dụng chặt chẽ cần phải kiểm tra cả 2 phía vì hacker có thể vô hiệu việc kiểm lỗi ở client bằng nhiều cách và nếu không có kiểm lỗi phía server thì ứng dụng của chúng ta sẽ có lỗi.

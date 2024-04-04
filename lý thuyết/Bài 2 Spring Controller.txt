@@ -1,0 +1,181 @@
+Bài 2: Spring Controller
+
+* Annotated Controller
+• Spring MVC cung cấp các annotation như @Controller và @RestController để khai báo các controller
+• Các annotation này thực hiện các nhiệm vụ như ánh xạ tới URL, khai báo tham số của request, xử lý ngoại lệ…
+• Ví dụ khai báo controller:
+@Controller
+public class HelloController {
+@GetMapping("/hello")
+public String handle(Model model) { 
+model.addAttribute("message", "Hello
+World!"); return "index";
+}
+}
+
+* Tự động phát hiện controller
+• Để có thể tự động phát hiện được controller, cần khai báo thuộc tính component-scan cho ứng dụng
+• Ví dụ sử dụng lớp cấu hình Java:
+@Configuration 
+@ComponentScan(”com.codegym. web")
+public class WebConfig {
+// ...
+}
+
+* Request Mapping
+• Annotation @RequestMapping được sử dụng để ánh xạ các request tới các action tương ứng của controller
+• @RequestMapping bao gồm một số thuộc tính để ánh xạ đến:
+- URL
+- HTTP Method
+- Các tham số
+- Các headers
+- Media types
+- @RequestMapping có thể áp dụng cho lớp hoặc phương thức
+
+* Các biến thể của @RequestMapping
+• @RequestMapping còn có một số biến thể dành cho các HTTP Method cụ thể:
+- @GetMapping
+- @PostMapping
+- @PutMapping (Update toàn bộ)
+- @DeleteMapping
+- @PatchMapping (Update một phần)
+
+* URI patterns
+• Có thể ánh xạ tới các request bằng cách sử dụng các mẫu đại diện sau:
+- ? Trùng khớp một ký tự
+- * Trùng khớp với 0 hoặc nhiều ký tự
+- ** Trùng khớp với 0 hoặc nhiều phần của đường dẫn (path segment)
+
+* @PathVariable sử dụng Regex
+• Có thể sử dụng biểu thức {varName:regex} để khai báo các biến đường dẫn sử dụng Regex
+• Ví dụ, với đường dẫn “/spring-web-3.0.5 .jar”, có thể tách thành các biến name, version và file extension như sau:
+@GetMapping("/{name:[a-z-]+}-
+{version:\\d\\.\\d\\.\\d}{ext:\\.[a-z]+}")
+public void handle(@PathVariable String version, @PathVariable String ext)
+{
+// ...
+}
+
+* Ánh xạ với Content-Type của Request
+• Sử dụng thuộc tính consumes để ánh xạ đến Content-Type của request
+• Ví dụ:
+@PostMapping(path = "/pets", consumes = "application/json") 
+public void addPet(@RequestBody Pet pet){
+// ...
+}
+• Hoặc phủ định:
+@PostMapping(path = "/pets", consumes = "!text/plain") 
+public void addPet(@RequestBody Pet pet){
+// ...
+}
+
+* Ánh xạ với Content-Type của Request
+• Sử dụng thuộc tính consumes để ánh xạ đến Content-Type của request
+• Ví dụ:
+@PostMapping(path = "/pets", consumes = "application/json") 
+public void addPet(@RequestBody Pet pet){
+// ...
+}
+• Hoặc phủ định:
+@PostMapping(path = "/pets", consumes = "!text/plain") 
+public void addPet(@RequestBody Pet pet){
+// ...
+}
+
+* Ánh xạ tới tham số của request
+• Sử dụng thuộc tính params để ánh xạ tới tham số của đường dẫn
+• Ví dụ:
+@GetMapping(path = "/pets/{petId}", params = "myParam=myValue") 
+public void findPet(@PathVariableString petId) {
+// ...
+}
+
+* Ánh xạ tới header của Request
+• Sử dụng thuộc tính headers để ánh xạ đến header của request
+• Ví dụ:
+@GetMapping(path = "/pets", headers = "myHeader=myValue") 
+public void findPet(@PathVariable String petId)
+{
+// ...
+}
+
+* Tham số của handler method
+• Handlermethod có thể có nhiều tham số, chẳng hạn như:
+- HttpServletRequest
+- HttpServletResponse
+- HttpSession
+- @PathVariable
+- @RequestParam
+- @RequestHeader
+- @RequestBody
+- @ModelAttribute
+- @RequestAttribute
+- … và các tham số khác
+
+* Giá trị trả về của handler method
+• Handler method có thể trả về một trong các giá trị thuộc các loại sau:
+- @ResponseBody
+- String
+- View
+- @ModelAttribute
+- ModelAndView
+- void
+- StreamingResponseBody
+- org.springframework.ui.Model
+- …và các loại giá trị trả về sau
+
+* @RequestParam
+• Sử dụng @RequestParam để truy cập một tham số của URI với một tham số của handler method
+• Ví dụ:
+@Controller 
+@RequestMapping("/pets") 
+public class EditPetForm {
+// ...
+@GetMapping
+public String setupForm(@RequestParam("petId") int petId, Model model) { 
+Pet pet = this.clinic.loadPet(petId); model.addAttribute("pet", pet);
+return "petForm";
+}
+// ...
+}
+
+
+• Ví dụ:
+@PostMapping("/owners/{ownerId}/pets/{petId}/edit")
+public String processSubmit(@ModelAttribute Pet pet) { }
+• Hoặc:
+@PutMapping("/accounts/{account}")
+public String save(@ModelAttribute("account") Account account) {
+// ...
+}
+
+* Multipart
+• Sử dụng MultipartFile để truy cập đến file được upload lên
+• Ví dụ:
+@Controller
+public class FileUploadController { 
+@PostMapping("/form")
+public String handleFormUpload(@RequestParam("name")String name, 
+@RequestParam("file") MultipartFile file) {
+if (!file.isEmpty()) {
+byte[] bytes = file.getBytes();
+// store the bytes somewhere
+return "redirect:uploadSuccess";
+}
+return "redirect:uploadFailure";
+}
+}
+
+* So sánh Request Parameters và Path Variables
+-Vị trí: Request Parameters nằm trong phần query của URL, trong khi Path Variables nằm trong phần đường dẫn của URL.
+-Mục đích: Request Parameters được sử dụng để truyền dữ liệu không nhạy cảm hoặc tùy chọn, trong khi Path Variables được sử dụng để truyền dữ liệu quan trọng hoặc định danh.
+-Cú pháp: Request Parameters sử dụng cú pháp key=value, trong khi Path Variables được đặt trong dấu /{variable} hoặc /{variable1}/{variable2}/....
+-Cách truyền dữ liệu: Request Parameters có thể được truyền trong phần query của URL hoặc trong phần thân của yêu cầu HTTP POST, trong khi Path Variables được truyền trong phần đường dẫn của URL. RP k thể regex còn PV có thể regex.
+
+* Là một lập trình viên chuyên nghiệp Servlet/JSP, bạn cần phân biệt được sự khác nhau giữa forward  và redirect. Forward nhanh hơn redirect  bởi vì redirect  yêu cầu một chuyến khứ hồi tới server còn forward  thì không cần. Tuy nhiên có những trường hợp sử dụng redirect sẽ tốt hơn. Một trong số đó là khi bạn cần chuyển hướng tới một trang web ở bên ngoài như một trang web khác. Bạn không thể sử dụng forward để chuyển hướng mục tiêu là trang web bên ngoài, do vậy redirect  là lựa chọn duy nhất của bạn.
+
+* Một điểm là khi bạn sử dụng redirect  sẽ khó khăn trong việc chuyển giá trị tới trang khác. Với forward, bạn có thể dễ dàng thêm các thuộc tính vào đối tượng Model và đối tượng đó sẽ được truy cập bởi view. Mặc dù redirect  là một chuyến khứ hồi tới server nhưng mọi thứ trong Model sẽ mất khi bạn sử dụng redirect . May mắn là từ phiên bản Spring 3.1 tạo ra một cách để giữ các giá trị khi sử dụng redirect  bằng cách sử dụng flash attributes.
+
+* Để sử dụng flash attributes bạn phải thêm annotation @EnableWebMvc  trong lớp cấu hình Spring MVC. Và sau đó bạn phải thêm mới một đối số thuộc kiểu org.springframework.web.servlet.mvc.support.RedirectAttributes vào phương thức của bạn.
+
+*Trong Spring MVC, thuộc tính consumes trong các annotation @RequestMapping được sử dụng để chỉ định các định dạng (media types) của dữ liệu (payload) mà một phương thức xử lý request có thể xử lý.

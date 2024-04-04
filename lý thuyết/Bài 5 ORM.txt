@@ -1,0 +1,88 @@
+Bài 5: ORM
+
+* ORM
+• ORM (Object-Relational Mapping) là kỹ thuật liên kết giữa các đối tượng trong lập trình với các đối tượng trong CSDL
+• ORM cho phép truy xuất dễ dàng đến dữ liệu thông qua các đối tượng lập trình
+• ORM giúp lập trình viên tập trung thao tác với các đối tượng, không cần quá quan tâm đến CSDL thực tế đang dùng
+
+* Ưu điểm và nhược điểm của ORM
+- Ưu điểm:
+• Quản lý dữ liệu tập trung trong code
+• Các thao tác với dữ liệu được thực hiện tự động
+• Tránh được các lỗi cú pháp SQL
+• Hỗ trợ giao dịch (transaction)
+• Có thể cache dữ liệu để truy xuất nhanh hơn
+- Nhược điểm:
+• Đối với các dự án lớn, hiệu năng truy xuất dữ liệu thường hạn chế
+• Lập trình viên dễ bị rơi vào bẫy truy xuất dữ liệu quá nhiều(vì quá dễ để truy xuất), ảnh hưởng đến hiệu năng của hệ thống
+• Đối với các thao tác phức tạp, có thể cần đến việc sử dụng SQL thuần
+
+* Một số ORM framework dành cho Java
+• Apache Cayenne
+• ActiveJDBC
+• EclipseLink
+• Ebean
+• OpenJPA
+• Hibernate
+• JPA (Java Persistence API)
+
+* Hibernate là một trong những ORM(Object Relational Mapping) Framework. Hibernate framework là một framework cho persistence layer. Như vậy, nhờ có Hibernate framework mà giờ đây khi phát triển ứng dụng thì chỉ còn chú tâm vào những layer khác mà không phải bận tâm nhiều về persistence layer.
+- Hibernate giúp lập trình viên Java có thể map các object (POJO) với database, và hỗ trợ thực hiện các khái niệm lập trình hướng đối tượng với cơ dữ liệu quan hệ.
+- Ngoài ra Hibernate giúp lưu trữ và truy vấn dữ liệu quan hệ mạnh mẽ và nhanh. Hibernate cho phép truy vẫn dữ liệu thông qua Java Persistence API (JPA) hoặc bằng HQL hoặc bằng SQL thuần (Native SQL).
+
+* Hibernate Framework có các lợi ích như dưới đây:
+- Mã nguồn mở và nhẹ: Hibernate Framework là mã nguồn mở có giấy phép LGPL và nhẹ.
+- Hiệu suất nhanh: Hiệu suất của Hibernate Framework là nhanh bởi vì bộ nhớ cache được sử dụng trong nội bộ Hibernate Framework. Có hai loại bộ nhớ cache trong Hibernate Framework, gồm bộ nhớ cache cấp một (first level cache) và bộ nhớ cache cấp hai (second level cache). Bộ nhớ cache cấp một được enable mặc định.
+- Truy vấn cơ sở dữ liệu độc lập: HQL (Hibernate Query Language) là phiên bản hướng đối tượng của SQL. Nó tạo ra các truy vấn cơ sở dữ liệu độc lập. Vì vậy, bạn không cần phải viết các truy vấn cơ sở dữ liệu cụ thể. Trước Hibernate, nếu dự án có cơ sở dữ liệu bị thay đổi, chúng ta cần phải thay đổi truy vấn SQL dẫn đến risk và dễ gây lỗi. Với HQL chúng ta chỉ cần thay đổi mapping giữa các entity và table, column và properties. HQL thì tối ưu hơn SQL.
+- Tạo bảng tự động: Hibernate framework cung cấp phương tiện để tạo ra các bảng cơ sở dữ liệu một cách tự động. Vì vậy, không cần phải tốn công sức tạo ra các bảng trong cơ sở dữ liệu thủ công. Hibernate cũng có thể update thông tin bảng, tuy nhiên cách này khá rủi ro trong công việc thực tế nên chúng ta cần hạn chế hoặc không sử dụng tính năng này.
+- Đơn giản lệnh join: Có thể lấy dữ liệu từ nhiều bảng một cách dễ dàng với Hibernate framework.
+- Cung cấp thống kê truy vấn và trạng thái cơ sở dữ liệu: Hibernate hỗ trợ bộ nhớ cache truy vấn và cung cấp số liệu thống kê về truy vấn và trạng thái cơ sở dữ liệu.
+
+* Kiến trúc của Hibernate
+- Kiến trúc Hibernate bao gồm nhiều đối tượng như đối tượng persistent, session factory, transaction factory, connection factory, session, transaction, …
+- Kiến trúc của Hibernate được phân ra làm 4 layer:
+Java application layer
+Hibernate framework layer
+Backhand api layer
+Database layer
+
+* Các thành phần trong kiến trúc của Hibernate
+- Persistence object
+Chính là các POJO object map với các table tương ứng của cơ sở dữ liệu quan hệ. Nó như là những container chứa dữ liệu từ ứng dụng để lưu xuống database, hay chứa dữ liệu tải lên ứng dụng từ database.
+
+- Configuration
+Configuration là đối tượng Hibernate đầu tiên cần tạo trong bất kỳ ứng dụng Hibernate nào và chỉ cần tạo một lần trong quá trình khởi tạo ứng dụng. Nó đại diện cho một tập tin cấu hình hoặc thuộc tính yêu cầu của Hibernate. Đối tượng Configuration cung cấp hai thành phần chính:
++ Database Connection: Thao tác này được xử lý thông qua một hoặc nhiều tệp cấu hình được Hibernate hỗ trợ. Các tệp này là hibernate.properties và hibernate.cfg.xml.
++ Class Mapping Setup: Thành phần này tạo ra kết nối giữa các lớp Java và các bảng cơ sở dữ liệu.
+
+- Session Factory
++ Session Factory là một interface giúp tạo ra session kết nối đến database bằng cách đọc các cấu hình trong Hibernate configuration.
++ SessionFactory là đơn luồng, an toàn (Thread-safe) và được sử dụng bởi tất cả các luồng của một ứng dụng.
+
+-Session
++ Một session được sử dụng để có được một kết nối vật lý với một cơ sở dữ liệu. 
++ Các đối tượng Session không nên được mở trong một thời gian dài bởi vì chúng thường không phải là đơn luồng an toàn (thread-unsafe) và chúng cần được tạo ra và đóng lại sau khi không còn được sử dụng.
++ Mỗi một đối tượng session được Session factory tạo ra sẽ tạo một kết nối đến database.
+
+- Transation
++ Một Transaction đại diện cho một đơn vị làm việc với cơ sở dữ liệu và hầu hết các RDBMS hỗ trợ chức năng transaction. Các transaction trong Hibernate được xử lý bởi trình quản lý transaction và transaction.
++ Transaction đảm bảo tính toàn vẹn của phiên làm việc với cớ sở dữ liệu.
++ Transaction là một tập gồm nhiều tác vụ thao tác đến cơ sở dữ liệu và transaction đảm bảo rằng tất cả các tác vụ này đều được thực thi thành công. Bất kì tác vụ nào thất bại thì transaction sẽ lập tức dừng lại và thực hiện việc khôi phục lại dữ liệu đến 1 điểm cụ thể do lập trình viên quy định(gọi là rollback).
+
+* Hibernate Query Language (HQL) là một ngôn ngữ truy vấn hướng đối tượng (OOP), tương tự như SQL (Structured Query Language) nhưng thay vì làm việc trên các bảng và cột, HQL làm việc với các đối tượng persistent và các thuộc tính của chúng.
+
+* Lợi ích của việc sử dụng HQL
+Việc sử dụng HQL đem lại rất nhiều lợi ích khác nhau và dưới đây là một số điểm hay của HQL:
+- Cơ sở dữ liệu độc lập
+- Hỗ trợ các truy vấn đa hình
+- Rất dễ đọc có thể học được đối với các lập trình viên Java
+- Giảm thiểu rủi ro ở java application khi database có sự update
+
+* Query
+Nó là một đại diện hướng đối tượng của Hibernate Query. Đối tượng của Query có thể lấy được bằng cách gọi phương thức createQuery() của Session.
+Query cung cấp cho chúng ta rất nhiều phương thức khác nhau và dưới đây là một số phương thức hay được sử dụng:
+public int executeUpdate() được sử dụng để thực hiện query cập nhật hoặc xoá.
+public List list() trả về kết quá dưới dạng List
+public Query setFirstResult(int rowno) chỉ định số hàng từ nơi bản ghi được truy xuất.
+public Query setParameter(int position, Object value) được sử dụng để set giá trị cho các parameter của query.
+public Query setParameter(String name, Object value) được sử dụng để set giá trị cho các parameter của named query.

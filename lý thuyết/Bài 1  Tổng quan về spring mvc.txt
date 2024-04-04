@@ -1,0 +1,124 @@
+Bài 1 : Tổng quan về spring mvc
+
+* Framework
+- Framework là các ứng dụng phần mềm có tính trừu tượng (abstraction), cung cấp các tính năng chung và thông dụng, có thể tuỳ biến để tạo nên những ứng dụng cụ thể khác nhau
+- Mỗi framework cung cấp một phương pháp riêng biệt để xây dựng và triển khai ứng dụng
+- Mỗi framework bao gồm một môi trường tổng thể, tái sử dụng được nhằm cung cấp các chức năng và công cụ để hỗ trợ quá trình phát triển ứng dụng
+
+* Framework vs Library
+- Diểm khác biệt lớn nhất giữa Framework và Library đó chính là cơ chế “Inversion of Control”
+- Với Library: Ứng dụng nắm quyền điều khiển (control)
+- VớiFramework: Framework nắm quyền điều khiển
+- Một framework có thể có nhiều library
+
+* Lợi ích của Framework
+- Framework giải quyết các vấn đề thông dụng, giúp lập trình viên tập trung vào xử lý nghiệp vụ
+- Giúp tăng tốc độ phát triển
+- Cung cấp môi trường làm việc tiêu chuẩn, giúp dễ giao tiếp giữa các bên khi cùng tham gia phát triển
+- Các framework thường có cộng đồng phát triển lớn, các giải pháp đã được đánh giá và thử nghiệm, hệ sinh thái đầy đủ giúp nhanh chóng xây dựng được các giải pháp tuỳ biến
+
+* Nhược điểm:
+- Framework phát sinh lỗi thì tất cả những ứng  dụng sử dụng fw sẽ ngừng hoạt động
+- Framework khá nặng
+
+* Spring Framework
+- SpringFramework cung cấp một mô hình đầy đủ cho việc phát triển và cấu hình các hệ thống Java lớn
+• Các tính năng lõi:
+• Core: IoC container, Events, Resources, i18n, Validation, Data Binding, 
+Type Conversion, SpEL, AOP.
+• Testing: Mock objects, TestContext framework, Spring MVC 
+Test, WebTestClient.
+• Data Access: Transactions, DAO support, JDBC, ORM, Marshalling XML.
+• Web Servlet: Spring MVC, WebSocket, SockJS, STOMP messaging.
+• Web Reactive: Spring WebFlux, WebClient, WebSocket.
+• Integration: Remoting, JMS, JCA, JMX, Email, Tasks, Scheduling, Cache.
+• Languages: Kotlin, Groovy, Dynamic languages.
+
+* Giới hiệu spring Web MVC 
+• SpringWebMVCFramework là một nền tảng mã nguồn mở phổ biến để phát triển ứng dụng Java EE
+• Được cài đặt đầy đủ các đặc tính của MVCPattern
+• Cung cấp một Front Controller để xử lý hoặc lắng nghe mỗi khi có request tới ứng dụng
+
+* ModelAndView
+• ModelAndView đại diện cho một view cùng với các dữ liệu sử dụng trong view đó
+• ModelAndView có thể kèm theo status của Response
+• Ví dụ:
+@GetMapping("/goToViewPage")
+public ModelAndView passParametersWithModelAndView()
+{ ModelAndView modelAndView = new 
+ModelAndView("viewPage"); 
+modelAndView.addObject("message", "Baeldung"); 
+return modelAndView;
+}
+
+* DispatcherServlet
+- Mỗi request đến sẽ được đón nhận và xử lý bởi FrontController
+- Kế thừa từ HTTPServlet
+- DispacherServlet gửi các request tới các Controller và quyết định hồi đáp bằng cách gửi lại view
+- Cấu hình của DispatcherServlet trong file web.xml:
+<servlet>
+<servlet-name>books</servlet-name>
+<servlet- class>org.springframework.web.servlet.DispatcherServlet</servle tclass>
+</servlet>
+<servlet-mapping>
+<servlet-name>books</servlet-name>
+<url-pattern>*.htm</url-pattern>
+</servlet-mapping>
+
+* Controller
+- Springcontroller xử lý các requestđể thực hiện các logic nghiệp vụ
+- Annotation @RequestMapping ánh xạ một URL đến một phương thức của controller
+• Ví dụ:
+@Controller
+public class CustomerController {
+@RequestMapping(value = "/input- customer")
+public String inputCustomer() {
+// do something here
+return "CustomerForm";
+}
+}
+
+* ViewResolver
+- ViewResolver là cơ chế để xử lý tầng view của SpringMVC
+- ViewResolver ánh xạ tên của view sang đối tượng view tương ứng
+- ViewResolver là bộ phận quyết định xem Front Controller sẽ trả về View thực tế nào. Front Controller sẽ xây dựng view trả về bằng cách truy xuất các giá trị đã được gắn cho dữ liệu ở Model, kết quả này sau đó sẽ được trả về cho người dùng.
+- Có nhiều implementation khác nhau của ViewResolver:
+• AbstractCachingViewResolver
+• XmlViewResolver
+• ResourceBundleViewResolver
+• UrlBasedViewResolver
+• InternalResourceViewResolver
+• FreeMarkerViewResolver
+• ContentNegotiatingViewResolver
+
+* Inversion of Control Pattern
+• IoC là một nguyên lý trong phát triển phần mềm, trong đó việc điều khiển các đối tượng hoặc các thành phần của hệ thống được thực hiện bởi framework hoặc các container
+• IoC cho phép framework nắm giữ quyền điều khiển luồng thực thi của hệ thống và gọi các mã nguồn khác
+• Lợi ích:
+- Tách rời việc thực thi(execution) và việc triển khai(implementation)
+- Dễ chuyển đổi giữa các implementation
+- Dễ phân tách module hơn
+- Dễ kiểm thử hơn, bằng cách tách rời các thành phần riêng lẻ
+- Có thể triển khai IoC thông qua một số cơ chế:Strategydesign pattern,
+ServiceLocator pattern,Factorypattern,andDependency Injection(DI)
+
+* Dependency Injection
+• Dependencyinjection là một cơ chế để triển khai IoC
+• Các dependency được cung cấp và điều khiển bởi container hoặc framework
+• Thao tác “tiêm” các đối tượng vào trong đối tượng khác được thực hiện bởi container hoặc framework
+- Bao gồm: Constructor DI, Setter DI, Field DI(inteerface DI)
+- FW sẽ vào beans container để tìm bean tương ứng và tiêm vào các điểm gọi nó
+
+* Spring IoC Container
+• IoC container được đại diện bởi interface ApplicationContext
+• Springcontainer chịu trách nhiệm khởi tạo, cấu hình và tổ chức các đối tượng – còn được gọi là các beans
+• SpringMVC cung cấp một số triển khai:
+• ClassPathXmlApplicationContext
+• FileSystemXmlApplicationContext
+• WebApplicationContext
+• Ví dụ:
+ApplicationContext context =new ClassPathXmlApplicationContext("applicationContext.xml");
+• Container sẽ gọi một constructor với các tham số, mỗi tham số đại diện cho một dependency
+• Spring nhận biết các tham số thông qua kiểu dữ liệu, tên của thuộc tính và chỉ số của tham số
+
+* Spring là một framework phát triển ứng dụng Java. Nó cung cấp một cách tiếp cận linh hoạt và mạnh mẽ để xây dựng các ứng dụng doanh nghiệp. Spring giúp giảm sự phụ thuộc vào các công nghệ cụ thể như Java EE và cung cấp một cách tiếp cận tổng thể cho việc phát triển ứng dụng.

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<div style="width: 50%; float: left">
+    <input type="text" id="searchInput" placeholder="Nhập từ khóa tìm kiếm">
+    <button id="searchButton">Tìm kiếm</button>
+    <div id="list"></div>
+</div>
+<div style="width: 50%; float: left">
+    Danh sách blog
+    <button id="listButton">Hiển thị danh sách</button>
+    <div id="list1"></div>
+    <div id="page"></div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#searchButton").click(function () {
+            search();
+        });
+
+        $("#searchInput").keypress(function (event) {
+            if (event.which === 13) {
+                search();
+            }
+        });
+
+        function search() {
+            var searchValue = $("#searchInput").val();
+
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:8080/ws/search",
+                data: {search: searchValue},
+                success: function (data) {
+                    displayData(data);
+                },
+                error: function () {
+                    $("#list").html("Đã xảy ra lỗi trong quá trình tìm kiếm.");
+                }
+            });
+        }
+    });
+
+    $(document).ready(function () {
+        var page = 0;
+        $(document).on("click", "#pageButton", function() {
+             // Cập nhật giá trị của biến page ở đây
+            getData1();
+        });
+
+        function getData1() {
+            page++;
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:8080/ws",
+                data: { page: page },
+                success: function (data) {
+                    displayListData(data);
+                },
+                error: function () {
+                    $("#list1").html("Đã xảy ra lỗi trong quá trình tìm kiếm.");
+                }
+            })
+        }
+    });
+
+    $(document).ready(function (){
+        $("#listButton").click(function (){
+            getData();
+        });
+
+        function getData(){
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:8080/ws",
+                success: function (data) {
+                    displayListData(data);
+                },
+                error: function () {
+                    $("#list1").html("Đã xảy ra lỗi trong quá trình tìm kiếm.");
+                }
+            })
+        }
+    });
+
+    function displayListData(data) {
+        let table = "<table>";
+        table += "<tr><th>STT</th><th>Tiêu đề</th><th>Nội dung</th><th>Ngày đăng</th><th>Danh mục</th></tr>";
+        let publishDate;
+        let formattedDate;
+        if (data.length > 0) {
+            for (let i = 0; i < data.length; i++) {
+                publishDate = new Date(data[i].publishDate);
+                formattedDate = formatDate(publishDate);
+                table += "<tr>";
+                table += "<td>" + (i + 1) + "</td>";
+                table += "<td>" + data[i].title + "</td>";
+                table += "<td>" + data[i].content + "</td>";
+                table += "<td>" + formattedDate + "</td>";
+                table += "<td>" + data[i].category.name + "</td>";
+                table += "</tr>";
+            }
+        } else {
+            table += "<tr><td colspan='5'>Không có kết quả tìm kiếm.</td></tr>";
+        }
+
+        table += "</table>";
+        let nextPage = "<button id='pageButton'>Trang tiếp</button>";
+        $("#page").html(nextPage);
+        $("#list1").html(table);
+    }
+
+    function displayData(data) {
+        let table = "<table>";
+        table += "<tr><th>STT</th><th>Tiêu đề</th><th>Nội dung</th><th>Ngày đăng</th><th>Danh mục</th></tr>";
+        let publishDate;
+        let formattedDate;
+        if (data.length > 0) {
+            for (let i = 0; i < data.length; i++) {
+                publishDate = new Date(data[i].publishDate);
+                formattedDate = formatDate(publishDate);
+                table += "<tr>";
+                table += "<td>" + (i + 1) + "</td>";
+                table += "<td>" + data[i].title + "</td>";
+                table += "<td>" + data[i].content + "</td>";
+                table += "<td>" + formattedDate + "</td>";
+                table += "<td>" + data[i].category.name + "</td>";
+                table += "</tr>";
+            }
+        } else {
+            table += "<tr><td colspan='5'>Không có kết quả tìm kiếm.</td></tr>";
+        }
+
+        table += "</table>";
+        $("#list").html(table);
+    }
+
+    function formatDate(date) {
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        return day + "/" + month + "/" + year;
+    }
+</script>
+</body>
+</html>

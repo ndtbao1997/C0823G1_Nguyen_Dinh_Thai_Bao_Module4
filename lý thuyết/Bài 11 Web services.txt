@@ -1,0 +1,39 @@
+Bài 11: Web services
+
+* Web Service(1)
+•Web service (Dịch vụ web) là các thành phần ứng dụng được hiển thị dưới dạng các dịch vụ trên WWW.
+• Là một thành phần phần mền
+• Chứa một vài logic nghiệp vụ bên trong đó
+• Được hiển thị trên Web cho nhiều loại client
+• Được truy cập bởi các client tại các vị trí khác nhau
+•Web Service có thể sử dụng để tích hợp với các ứng dụng được viết bằng các ngôn ngữ khác nhau và chạy trên các nền tảng khác nhau.
+•Xây dựng các chuẩn mở và sử dụng các giao thức mở để giao tiếp. Web service hoạt động như một server trong mô hình ứng dụng client server sử dụng giao thức HTTP/HTTPs và chỉ thực hiện một tác vụ cụ thể.
+•Với dữ liệu đầu vào xác định, webserver xử lý và trả dữ liệu đầu ra theo chuẩn đảm bảo mọi ứng dụng có thể hiểu và sử dụng mà không quan tâm đến loại thiết bị, hệ điểu hành, kiến trúc phần mềm hay ngôn ngữ được sử dụng.
+•Kiểu dữ liệu đầu ra phổ biến của một web service thường là XML hoặc JSON.
+
+* Các thành phần của Web Service
+3 thành phần chính (dựa trên XML)
+1. Simple Object Access Protocol (SOAP): dùng để trao đổithông tin\thông điệp giữa user và Web Service
+2. Web Service Description Language (WSDL): dùng để mô tả thông tin về Web Service
+3. Universal Description, Discovery and Integration (UDDI): dùng cho việc công bố WebService, user sử dụng UDDI để xác định\khám phá các nghiệp vụ mà Web Service cung cấp và triệu gọi chúng
+
+* Giao tiếp giữa user và Web Service
+1. User gọi Web Service bằng cách gửi (request) một thông điệp SOAP qua giao thức HTTP tới Web Service
+2. WebService tiếp nhận\xử lí và trả về(response) cho user một thông điệp SOAP trên nền tảng XML
+
+* Ưu điểm của web service
+•Hoạt động trên các ứng dụng, nền tảng, hệ điều hành, ngôn ngữ khác nhau.
+•Khả năng tái sử dụng cao.
+•Tạo mối quan hệ tương tác, mềm dẻo trong hệ thống phần mềm, dễ dàng cho việc phát triển ứng dụng phân tán.
+•Giảm sự phức tạp của hệ thống, giảm thời gian phát triển hệ thống, hạ giá thành hoạt động, dễ dàng tương tác giữa các hệ thống với nhau.
+
+* Nhược điểm của web service
+•Khi một web service chết hoặc dừng hoạt động sẽ gây lỗi, thiệt hại lớn trên tất cả các hệ thống, thiết bị đang sử dụng web service đó.
+•Cần quan tâm đến vấn đề an toàn và bảo mật nhiều hơn khi sử dụng web service.
+•Việc có quá nhiều chuẩn cho webservice dẫn đến người sử dụng khó nắm bắt
+
+* Các loại web service cơ bản
+• SOAP (Simple ObjectAccess Protocol) là giao thức sử dụng XML để định nghĩa dữ liệu dạng thuần văn bản(plain text) và truyền dữ liệu thông qua HTTP.
+• REST (Representational State Transfer) là một kiểu cấu trúc cung cấp các quy tắc để xây dựng web service.
+• REST định nghĩa dữ liệu dưới dạng XML hoặc JSON và truyền thông qua mạng internet sử dụng giao thức HTTP.
+• Các web service xây dựng dựa trên REST được gọi là REST ful,chúng chủ yếu nhằm xử lý các hoạt động CRUD (Create/ Read/ Update/ Delete) trên dữ liệu.

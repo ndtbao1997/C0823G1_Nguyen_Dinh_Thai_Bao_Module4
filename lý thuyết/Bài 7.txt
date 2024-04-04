@@ -1,0 +1,103 @@
+Bài 7: Repository
+
+* Trong JPA (Java Persistence API), có hai cách chính để thực thi truy vấn dữ liệu từ cơ sở dữ liệu: TypedQuery và Query. Dưới đây là sự khác nhau giữa hai loại truy vấn này:
+- TypedQuery:
++ TypedQuery là một truy vấn kiểu được kiểm tra tại thời điểm biên dịch.
++ Nó được định nghĩa với một kiểu kết quả cụ thể, ví dụ: TypedQuery<User> hoặc TypedQuery<Product>.
++ Cú pháp truy vấn được kiểm tra tích cực, giúp phát hiện lỗi cú pháp truy vấn ngay khi biên dịch.
++ Kết quả truy vấn trả về là một danh sách các đối tượng có kiểu được chỉ định trước đó.
+- Query:
++ Query không có kiểu kết quả cụ thể và không được kiểm tra tại thời điểm biên dịch.
++ Nó được định nghĩa một cách chung chung và truyền vào một chuỗi truy vấn.
++ Cú pháp truy vấn không được kiểm tra tích cực tại thời điểm biên dịch.
++ Kết quả truy vấn trả về là một danh sách các đối tượng không cụ thể (trả về List<Object>).
+
+* createQuery:
+- createQuery được sử dụng để tạo truy vấn JPQL (Java Persistence Query Language).
+- JPQL là ngôn ngữ truy vấn cơ sở trên đối tượng trong JPA. Nó sử dụng các đối tượng và thuộc tính của đối tượng để xây dựng các truy vấn cơ sở dữ liệu.
+- Cú pháp truy vấn JPQL được kiểm tra tích cực tại thời điểm biên dịch và cung cấp tính linh hoạt cao trong việc truy vấn dữ liệu.
+
+* createNativeQuery:
+- createNativeQuery được sử dụng để tạo truy vấn SQL native, tức là truy vấn SQL trực tiếp sử dụng ngôn ngữ truy vấn cơ sở dữ liệu cụ thể (ví dụ: MySQL, PostgreSQL, Oracle).
+- Truy vấn native không kiểm tra tích cực cú pháp tại thời điểm biên dịch và có thể gây ra vấn đề bảo mật hoặc không tương thích đa cơ sở dữ liệu.
+
+* createNamedQuery:
+- createNamedQuery được sử dụng để tạo truy vấn được đặt tên (named query).
+- Named query là một truy vấn được định nghĩa trước trong metadata của đối tượng JPA. Nó được đặt tên và được sử dụng để thực thi truy vấn một cách dễ dàng.
+- Named query thường được định nghĩa trong @NamedQuery hoặc @NamedQueries annotation trên đối tượng JPA hoặc trong tệp XML mapping.
+
+* SpringDataRepository
+• Spring Data Repository giúp giảm thiểu lượng code thông thường lặp đi lặp lại ở tầng truy xuất dữ liệu.
+• Spring Data Repository định nghĩa một interface chính tên là Repository. Interface này nắm bắt entity cần quản lý và kiểu dữ liệu id của entity đó.
+•Interface CrudRepository kế thừa từ interface Repository, chứa các phương thức thông dụng dành cho các thao tác CRUD.
+•Interface PagingAndSortingRepository cung cấp các phương thức hỗ trợ cho việc phân trang và sắp xếp các entity.
+
+* Interface Repository
+• Interface chính của Spring Data JPA là Repository
+public interface Repository<T, ID>
+• Trong đó:
+• T là kiểu dữ liệu của entity muốn quản lý
+• ID là kiểu dữ liệu của id của entity muốn quản lý
+• Repository là một ‘marker interface’: chỉ sử dụng để đánh dấu/phân loại mà không khai báo các phương thức
+
+* Các interface kếthừa Repository
+•CrudRepository<T,ID>
+•PagingAndSortingRepository<T,ID>
+•ReactiveCrudRepository<T,ID>
+•ReactiveSortingRepository<T,ID>
+•RevisionRepository<T,ID,N>
+•RxJava2CrudRepository<T,ID>
+•RxJava2SortingRepository<T,ID>
+
+* Interface PagingAndSortingRepository
+• Kế thừa từ CrudRepository
+• Bổ sung khả năng phân trang và sắp xếp
+public interface PagingAndSortingRepository<T, ID extends Serializable> extends
+CrudRepository<T, ID> { 
+Iterable<T> findAll(Sort sort);
+Page<T> findAll(Pageable pageable);
+}
+
+* Phương thức truy vấn (Query method)
+•Query method là những phương thức được khai báo trong repositoryinterface có nhiệm vụ lấy thông tin từ cơ sở dữ liệu.
+•Query method giúp cho việc lấy thông tin từ cơ sở dữ liệu mà không cần viết một câu query nào.
+
+* Cácbướckhaibáocácphươngthứctruyvấn
+1. Khai báo một interface kế thừa Repository hoặc các interface con 
+của nó
+2. Khai báo các phương thức truy vấn tuỳ biến
+3. Cấu hình Spring để tạo các proxy instance cho các repository tuỳ
+biến
+• Có thể sử dụng XML hoặc Annotation
+4. Sửdụngrepository tuỳ biếnthôngquacơ chếInjection
+
+* Tạocâutruyvấn
+•SpringDatarepository giúp cho việc tạo các câu truy vấn tự động
+•Cơ chế này duyệt qua tên của phương thức với các tiền tố như find…By, read…By, query…By, count…By và get…By để xây dựng câu truy vấn
+•Có thể sử dụng thêm một số từ khoá khác,chẳng hạn như Distinct, Asc, Desc, Or, And
+
+* Pageable, Slice
+• Pageable là đốitượng hỗ trợ phân trang
+• Các phương thức thông dụng của Pageable: first(), getOffset(), getPageNumber(), getPageSize(), getSort(), hasPrevisous(), isPaged(), next(), previousOrFirst()
+• Slice là đối tượng hỗ trợ phân trang, nhưng không biết được tổng số lượng trang(Pageable biết tổng số lượng trang)
+• Slice có thể tốt hơn Pageable về mặt hiệu năng khi làm việc với nhiều dữ liệu(do không phải đếm tổng số lượng trang)
+• Các phương thức thông dụng của Slice: getContent(), getNumber(), getPageable(), getSize(), getSort(), hasNext(), hasPrevious(), isFirst(), 
+isLast()
+
+* Hạn chế số lượng kết quả
+•Sử dụng từ top hoặc first để hạn chế số lượng kết quả
+•Có thể thêm một giá trị số để quy định số lượng kết quả
+•Nếu không có giá trị số thì 1 kết quả sẽ được trả về
+
+* Converter và Formatter
+•Converter và Formatter hỗ trợ chuyển đổi dữ liệu nhập vào sang kiểu dữ liệu thích hợp
+•Ví dụ, Spring sẽ tự động thử chuyển đổi dữ liệu từ một trường <inputtype=”date”> sang một đối tượng java.util.Date
+•Converter là các thành phần sử dụng chung cho toàn bộ hệ thống, có thể sử dụng converter ở bất cứ tầng nào của ứng dụng.
+•Formatter thì chỉ được thiết kế để sử dụng ở tầng web(webtier)
+•Một converter được sử dụng chung cho nhiều trường hợp, chuyển đổi bất cứ kiểu dữ liệu nào sang một kiểu dữ liệu khác, chẳng hạn như String sang LocalDate hoặc Long sang LocalDate. Converter có thể sử dụng ở bất cứ tầng nào của ứng dụng.
+•Trong khi đó, một formatter chỉ có thể chuyển đổi String sang một kiểu dữ liệu khác, chẳng hạn như String sang LocalDate. Không thể sử dụng formatter để chuyển từ Long sang LocalDate. Formatter phù hợp để sử dụng ở tầng web, do đó, trong một ứng dụng Spring MVC, chúng ta nên sử dụng formatter hơn là converter.
+
+* Phương thức addResourceHandlers()
+• Phương thức addResourceHandlers() của interface WebMvcConfigurer giúp đăng ký các thư mục chứa các tài nguyên tĩnh
+•Các tài nguyên tĩnh bao gồm các file như ảnh,css,javascript…
+•Các tài nguyên tĩnh có thể  được đặt trong thư mục của ứng dụng, trong classpath hoặc các vị trí khác

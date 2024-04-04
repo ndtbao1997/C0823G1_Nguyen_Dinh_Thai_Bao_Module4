@@ -1,0 +1,86 @@
+Bài 9: AOP
+
+* Cross-cutting Concerns
+- Những mối quan tâm xuyên suốt, mà trong AOP được gọi bằng thuật ngữ “Aspect”.
+- Có thể gây ra trạng thái “dính (a)” và “rối (a)” cho mã. Cản trở việc phát triển sản phẩm.
+
+* Aspect Oriented Programming:
+• Một hệ tư tưởng lập trình mà trong đó các mối quan tâm xuyên suốt được cô lập khỏi nghiệp vụ chính của chương trình.
+• Các mối quan tâm xuyên suốt tham gia vào nghiệp vụ chính (bằng thao tác weave - đan) thông qua các advice (lời khuyên) mà không làm thay đổi mã đó.
+
+* Aspect (khía cạnh)
+• Một thuật ngữ trong AOP, chỉ “mối quan tâm xuyên suốt”.
+• Là một khối mã cô lập có khả năng tái sử dụng.
+• Do được cô lập khỏi nghiệp vụ chính, aspect giúp mã nghiệp vụ chính trở nên dễ hiểu hơn.
+
+* Advice
+Một hành động cụ thể của aspect
+
+* Join Point (điểm gia nhập)
+• Một vị trí nào đó trong luồng thực thi chương trình mà advice sẽ được weave (đan vào).
+• Các join point phổ biến bao gồm: vị trí đọc/ghi giá trị của field, vị trí gọi/thực thi một phương thức/constructor, hay vị trí mà một ngoại lệ 
+được tung ra.
+• Join point cần được thiết kế kỹ
+
+* Point Cut
+Chỉ ra một tập hợp các join point để công cụ AOP đan các advice vào nghiệp vụ chính.
+
+* Các loại advice
+• Before Advice: thực thi trước join point.
+• After Returning Advice: thực thi sau khi joint point hoàn thành bình thường
+• After Throwing Advice: thực thi nếu joint point kết thúc do có ngoại lệ được tung
+• After (finally) Advice: thực thi sau khi joint point hoàn thành bất kể dưới điều kiện nào
+• Around Advice: thực thi cả trước và sau joint point
+
+* Weave (đan)
+Tiến trình cài đặt các advice vào mã nghiệp vụ chính. Được thực hiện vào thời điểm compile hoặc trễ hơn, chẳng hạn khi nạp mã đã compile vào môi trường thực thi,hay ngay trong thời điểm thực thi.
+
+* AspectJ
+• Một phần mở rộng cho Java, trao cho lập trình viên Java khả năng lập trình hướng khía cạnh.
+• Được tích hợp chặt chẽ vào hầu hết các IDE java hiện đại
+• Tương thích với tất cả các phiên bản Java 1.x
+
+* Spring AOP
+• Cung cấp khả năng AOP, nhưng tương thích tốt hơn với Spring IoC Container so với các phương án triển khai AOP khác.
+• Tiến trình weave được thực hiện khi IoC Container xây dựng các bean.
+• Không triển khai trọn vẹn AOP, chẳng hạn chỉ hỗ trợ join point tại lời gọi method
+• Hỗ trợ sử dụng các annotation của Aspect để định nghĩa các chủ thể trong AOP (nhưng tiến trình weave vẫn được thực hiện bởi Spring AOP)
+
+* Ngôn ngữ định nghĩa Point Cut
+• execution - khớp những join point là những điểm thực thi phương thức
+• within - khớp join point trong một phạm vi cụ thể, như một package hay class
+• this - khớp join point là lời gọi phương thức mà lời gọi đó nằm trong một bean có quan hệ is-A với một kiểu chỉ được đưa ra
+• target - khớp joint point là lời gọi phương thức mà phương thức đó là của một đối tượng có quan hệ is-A với kiểu được đưa ra
+• args - khớp những join point có bộ tham số có quan hệ is-A với kiểu được đưa ra
+
+* Sử dụng @ExceptionHandler
+• Xử lý tại controller
+• Dùng để bắt ngoại lệ nghiệp vụ
+• Được viết bởi nhà phát triển
+
+* Sử dụng HandlerExceptionResolver
+• Ngoại lệ được xử lý tại servlet
+• Dùng để xử lý ngoại lệ hệ thống và từ chối request
+• Được cấu hình bởi kiến trúc sư hệ thống
+
+* Sử dụng error-page 
+• Được xử lý bởi application server
+• Dùng để xử lý lỗi fatal và các lỗi vượt quá khả năng điều khiển của framework
+• Cấu hình bởi kiến trúc sư hệ thống
+
+Spring @ExceptionHandler
+• Là một annotation cho method, được sử dụng để xử lý exception tại controller hoặc method của nó
+• Giúp mã dễ đọc và tăng khả năng tái sử dụng mã
+
+*Ngoại lệ mà sẽ hết gặp nếu người dùng thao tác lại
+• Ngoại lệ nghiệp vụ
+• Ngoại lệ từ thư viện
+Được handle trong mã của webapp, bởi nhà phát triển
+
+Ngoại lệ ma sẽ vẫn gặp lại nếu người dùng thao tác lại
+• Ngoại lệ từ hệ thống
+• Ngoại lệ không mong muốn từ hệ thống
+• Lỗi fatal 
+Được handle bởi framework, bởi kiến trúc sư hệ thống
+
+Ngoại lệ từ chối request • Ngoại lệ từ framework

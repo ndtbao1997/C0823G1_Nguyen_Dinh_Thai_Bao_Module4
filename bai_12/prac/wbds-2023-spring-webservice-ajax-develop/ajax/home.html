@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<input type="text" id="search">
+<button onclick="getBlog()" type="submit">Tìm kiếm</button>
+<div id="list"></div>
+</body>
+<script>
+    function display(arr) {
+        let data = "<table>"
+        data += "<tr><th>STT</th><th>Tiêu đề</th><th>Nội dung</th>" +
+            "<th>Ngày đăng</th><th>Danh mục</th></tr>"
+        for (let i = 0; i < arr.length; i++) {
+            data += "<tr>"
+            data += "<td>" +(i+1)+"</td>"
+            data += `<td>${arr[i].title}</td>`
+            data += `<td>${arr[i].content}</td>`
+            data += `<td>${arr[i].publishDate}</td>`
+            data += `<td>${arr[i].category}</td>`
+            // data += `<td>Update</td>`
+            // data += `<td><button onclick="deleteP(${arr[i].id})">Delete</button></td>`
+            // data += "</tr>"
+        }
+        data += "</table>"
+        $("#list").html(data)
+    }
+
+    function getBlog() {
+        let name = $("#search").val();
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            url: "http://localhost:8080/search",
+            type: "GET",
+            data: JSON.stringify(name),
+            success: (data) => {
+                display(data.content)
+            }
+        })
+    }
+</script>
+</html>

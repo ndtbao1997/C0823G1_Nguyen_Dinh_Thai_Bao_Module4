@@ -1,0 +1,78 @@
+Bài 6:
+
+* Entity
+• Entitylà đối tượng đại diện cho dữ liệu ở trong ứng dụng
+• Entity thường là POJO (Plain Old Java Object)
+• Entity sẽ được ánh xạ(mapping) tới một bảng trong CSDL
+• Trong JPA, một entity cần tuân thủ:
++ Được gắn với annotation javax.persistence.Entity
++ Có một constructor là public và không có tham số
++ Không được khai báo final
++ Các biến đối tượng cần được khai báo là private, protected hoặc ở mức package-private
+
+* PersistenceContext&EntityManager
+• PersistenceContext là tập các thể hiện của entity được quản lý, tồn tại trong một kho dữ liệu
+
+* Entity Manager
+- Entity Manager là đối tượng quản lý các entity. Interface EntityManager thực hiện các công việc sau:
++ Khai báo các phương thức để tương tác với persistence context
++ Tạo hoặc xoá các thể hiện của entity
++ Tìm kiếm entity theo khoá chính
++ Thực thi các câu lệnh truy vấn lên entity 
+- Transient: mới được khởi tạo chưa được lưu vào database
+- Persit: thêm mới dữ liệu vào DB và đưa vào luồng theo dõi dữ liệu 
+- Merge: update dữ liệu ở DB
+- Remove: xóa dữ liệu ở DB
+
+
+* Quản lý Entity
+• Container-managed Entity Manager:
+@PersistenceContext 
+EntityManager em;
+• Application-managed Entity Manager:
+@PersistenceUnit 
+EntityManagerFactory 
+emf;
+EntityManager em = emf.createEntityManager();
+
+* Câu lệnh truy vấn động
+• Phương thức createQuery() của lớp EntityManager giúp tạo các câu truy vấn động (dynamic query)
+
+* Named Query
+• Phương thức createNamedQuery() của lớp EntityManager giúp tạo các câu truy vấn tĩnh (static query)
+
+* Named Parameter
+• Tên của các tham số bắt đầu bằng dấu (:)
+
+* Positional Parameter
+• Vịtrí của các tham số bắt đầu bằng dấu (?)
+
+*Spring DataJPA
+- Cải tiến JPA tiêu chuẩn
+- Đơn giản hoá tầng truy xuất dữ liệu
+- Tự tạo repository
+- Truy vấn DSL
+- Ghi log, phân trang
+- Có thể tuỳ biến nếu cần thiết
+
+* JPA – Java Persistence API
+- JPA là một bộ đặc tả tiêu chuẩn của Java, trong đó mô tả các thao tác quản lý dữ liệu quan hệ trong các ứng dụng sử dụng Java.
+- JPA bao gồm:
++ Bộ API, được định nghĩa trong gói javax.persistence
++ Java Persitence Query Language (Ngôn ngữ truy vấn Java Persistence)
++ Object/relational metadata
+Bởi vì JPA chỉ là một bộ các đặc tả, do đó để sử dụng được thì cần tới một framework triển khai các đặc tả đó, chẳng hạn như là Hibernate.
+JPA cung cấp một mô hình POJOJO persistance cho phép ánh xạ các table/ các mối quan hệ giữa các table trong database sang các class/ mối quan hệ giữa các object
+
+JPA (Java Persistence API) và Spring Data JPA là hai công nghệ liên quan đến lưu trữ và truy xuất dữ liệu trong ứng dụng Java. Dưới đây là sự so sánh giữa JPA và Spring Data JPA:
+
+* JPA:
+- JPA là một chuẩn API trong Java để làm việc với cơ sở dữ liệu quan hệ.
+- Nó cung cấp một tập hợp các annotation và interface để ánh xạ các đối tượng Java vào các bảng trong cơ sở dữ liệu và thực hiện các thao tác CRUD (Create, Read, Update, Delete).
+- JPA định nghĩa một số khái niệm quan trọng như Entity, EntityManager, Persistence Context, và Query Language (JPQL) để thao tác với dữ liệu.
+- JPA không cung cấp cơ chế tự động tạo ra các truy vấn SQL từ các phương thức của Repository.
+* Spring Data JPA:
+- Spring Data JPA là một phần mở rộng của JPA và là một phần của Spring Data, một dự án trong Spring Framework giúp đơn giản hóa việc làm việc với cơ sở dữ liệu.
+- Spring Data JPA giúp tự động tạo ra các truy vấn SQL từ các phương thức của Repository.
+- Nó cung cấp các tính năng như tự động tạo bảng và cơ chế quản lý phiên bản.
+- Spring Data JPA giúp giảm thiểu việc viết mã thông qua các Repository interface, nơi chỉ cần định nghĩa các phương thức truy vấn mà không cần triển khai chúng.
